@@ -17,7 +17,8 @@ HEADERS_LIST = wolf.h
 HEADERS_DIR = ./includes/
 HEADERS = $(addprefix $(HEADERS_DIR), $(HEADERS_LIST))
 
-SRC_LIST = main.c
+SRC_LIST = main.c \
+		wolf.c
 
 SRC_DIR = ./srcs/
 SRC = $(addprefix $(SRC_DIR), $(SRC_LIST))
@@ -26,15 +27,12 @@ OBJ_LIST = $(patsubst %.c, %.o, $(SRC_LIST))
 OBJ_DIR = obj/
 OBJ = $(addprefix $(OBJ_DIR), $(OBJ_LIST))
 
-
 YELLOW = \033[033m
 GREEN = \033[032m
 BLUE = \033[36m
 RED = \033[031m
 PURPLE = \033[35m
 RESET = \033[0m
-
-.PHONY: all clean fclean re sani
 
 all: $(NAME)
 
@@ -74,3 +72,5 @@ sani :  $(LIBFT) $(OBJ_DIR) $(OBJ)
 	@echo "[$(BLUE)$(NAME) Compiled$(RESET)]"
 
 re: fclean all
+
+.PHONY: all clean fclean re sani

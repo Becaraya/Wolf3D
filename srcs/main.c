@@ -6,16 +6,17 @@
 /*   By: becaraya <becaraya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/22 15:59:05 by becaraya          #+#    #+#             */
-/*   Updated: 2019/05/22 16:11:07 by becaraya         ###   ########.fr       */
+/*   Updated: 2019/05/22 18:13:21 by becaraya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/wolf.h"
+#include "wolf.h"
 
 int main(int argc, char **argv)
 {
-	(void)argc;
-	(void)argv;
-	printf("test\n");
+	if (argc == 2)
+	{
+		wolf(argv[1]);
+	}
 	return (0);
 }
