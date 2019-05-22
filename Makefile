@@ -1,23 +1,28 @@
-NAME		= wolf3d
+NAME = wolf3d
 
-OBJDIR		= objs/
-SRCDIR		= srcs/
-LFTDIR		= libft/
-SDLDIR		= $(HOME)/.brew/Cellar/sdl2/2.0.9_1/lib/
-INCDIR		= ./includes/ ./libft/ /$(HOME)/.brew/Cellar/sdl2/2.0.9_1/include/SDL2
+CC = gcc
+CCF = -fsanitize=address
+FLAGS = -Wall -Wextra
+LIBRARIES = -lft -L$(LIBFT_DIR)
+INCLUDES = -I$(HEADERS_DIR) -I$(LIBFT_HEAD)
 
-SRC			= main.c
+LIBFT = $(LIBFT_DIR)libft.a
+LIBFT_DIR = ./Libft/
+LIBFT_HEAD = $(LIBFT_DIR)
 
-LFT			= ./libft/libft.a
+HEADERS_LIST = wolf.h
+HEADERS_DIR = ./includes/
+HEADERS = $(addprefix $(HEADERS_DIR), $(HEADERS_LIST))
 
-CSRC		= $(addprefix $(SRCDIR), $(SRC))
-COBJ		= $(addprefix $(OBJDIR), $(OBJ))
-INCLUDES	= $(foreach include, $(INCDIR), -I$(include))
+SRC_LIST = main.c
 
-CC			= gcc
-OBJ			= $(SRC:.c=.o)
-LIBS		= -L$(LFTDIR) -lft -L$(SDLDIR) -lSDL2
-CFLAGS		= $(INCLUDES) -Wall -Wextra -Werror
+SRC_DIR = ./srcs/
+SRC = $(addprefix $(SRC_DIR), $(SRC_LIST))
+
+OBJ_LIST = $(patsubst %.c, %.o, $(SRC_LIST))
+OBJ_DIR = obj/
+OBJ = $(addprefix $(OBJ_DIR), $(OBJ_LIST))
+
 
 YELLOW = \033[033m
 GREEN = \033[032m
@@ -26,26 +31,25 @@ RED = \033[031m
 PURPLE = \033[35m
 RESET = \033[0m
 
+.PHONY: all clean fclean re sani
+
 all: $(NAME)
 
-$(NAME): $(LFT) $(OBJDIR) $(COBJ)
-	@if !(brew ls --versions sdl2) > /dev/null; then\
-		brew install sdl2;\
-	fi
+$(NAME): $(LIBFT) $(OBJ_DIR) $(OBJ)
 	@echo "$(YELLOW)Sources compilation $(RESET)[$(GREEN)OK$(RESET)]\n"
-	@$(CC) $(CFLAGS) $(LIBS) -o $(NAME) $(COBJ)
+	@$(CC) $(FLAGS) $(LIBRARIES) $(INCLUDES) $(OBJ) -o $(NAME)
 	@echo "[$(BLUE)$(NAME) Compiled$(RESET)]"
 
-$(OBJDIR):
-	@mkdir -p $(OBJDIR)
+$(OBJ_DIR):
+	@mkdir -p $(OBJ_DIR)
+	@echo "\n$(BLUE)Obj directory...$(RESET)[$(GREEN)created$(RESET)]\n"
 
-
-$(OBJDIR)%.o: $(SRCDIR)%.c
+$(OBJ_DIR)%.o : $(SRC_DIR)%.c $(HEADERS)
+	@$(CC) $(FLAGS) -c $(INCLUDES) $< -o $@
 	@echo "$(YELLOW)$(notdir $(basename $@))...$(RESET)[$(GREEN)OK$(RESET)]"
-	@$(CC) $(CFLAGS) -c $< -o $@
 
-$(LFT):
-	@make -sC $(LFTDIR) -j
+$(LIBFT):
+	@$(MAKE) -sC $(LIBFT_DIR)
 
 clean:
 	@$(MAKE) -sC $(LIBFT_DIR) clean
@@ -58,6 +62,9 @@ fclean: clean
 	@rm -f $(NAME)
 	@echo "$(RED)$(NAME)...$(RESET)[$(PURPLE)deleted$(RESET)]\n"
 
-re: fclean all
+sani :  $(LIBFT) $(OBJ_DIR) $(OBJ)
+	@echo "$(YELLOW)Sources compilation $(RESET)[$(GREEN)OK$(RESET)]\n"
+	@$(CC) $(CCF) $(FLAGS) $(LIBRARIES) $(INCLUDES) $(OBJ) -o $(NAME)
+	@echo "[$(BLUE)$(NAME) Compiled$(RESET)]"
 
-.PHONY: all clean fclean re
+re: fclean all

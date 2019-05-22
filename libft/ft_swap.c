@@ -3,29 +3,6 @@
 /*                                                        :::      ::::::::   */
 /*   ft_swap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-<<<<<<< HEAD
-/*   By: pitriche <pitriche@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/14 19:05:26 by pitriche          #+#    #+#             */
-/*   Updated: 2019/03/18 17:23:14 by pitriche         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-#include "libft.h"
-
-/*
-** ft_swap
-** swap pointers
-*/
-
-void	ft_swap(void **a, void **b)
-{
-	void *tmp;
-
-	tmp = *a;
-	*a = *b;
-	*b = tmp;
-=======
 /*   By: becaraya <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/02 18:03:53 by becaraya          #+#    #+#             */
@@ -40,5 +17,4 @@ void	ft_swap(int *a, int *b)
 	c = *a;
 	*a = *b;
 	*b = c;
->>>>>>> e9d97ba64cb27f5e919a39135c8b3a3114034cf2
 }
