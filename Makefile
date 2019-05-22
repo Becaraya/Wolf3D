@@ -3,8 +3,11 @@ NAME = wolf3d
 CC = gcc
 CCF = -fsanitize=address
 FLAGS = -Wall -Wextra
-LIBRARIES = -lft -L$(LIBFT_DIR)
-INCLUDES = -I$(HEADERS_DIR) -I$(LIBFT_HEAD)
+LIBRARIES = -lft -L$(LIBFT_DIR) -L$(SDL_DIR) -lSDL2
+INCLUDES = -I$(HEADERS_DIR) -I$(LIBFT_HEAD) -I$(SDL_PATH)
+
+SDL_DIR = $(HOME)/.brew/Cellar/sdl2/2.0.9_1/lib/
+SDL_PATH = /$(HOME)/.brew/Cellar/sdl2/2.0.9_1/include/SDL2
 
 LIBFT = $(LIBFT_DIR)libft.a
 LIBFT_DIR = ./Libft/
@@ -36,6 +39,9 @@ RESET = \033[0m
 all: $(NAME)
 
 $(NAME): $(LIBFT) $(OBJ_DIR) $(OBJ)
+	@if !(brew ls --versions sdl2) > /dev/null; then\
+		brew install sdl2;\
+	fi
 	@echo "$(YELLOW)Sources compilation $(RESET)[$(GREEN)OK$(RESET)]\n"
 	@$(CC) $(FLAGS) $(LIBRARIES) $(INCLUDES) $(OBJ) -o $(NAME)
 	@echo "[$(BLUE)$(NAME) Compiled$(RESET)]"
