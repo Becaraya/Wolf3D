@@ -6,7 +6,7 @@
 /*   By: becaraya <becaraya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/22 15:59:52 by becaraya          #+#    #+#             */
-/*   Updated: 2019/05/22 19:03:21 by becaraya         ###   ########.fr       */
+/*   Updated: 2019/05/24 11:28:32 by becaraya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@
 
 typedef struct		s_all
 {
-	int				x_max;
-	int				y_max;
+	int				x_mx_map;
+	int				y_mx_map;
 	int				**map;
 }					t_all;
 
