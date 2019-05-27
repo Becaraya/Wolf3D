@@ -6,7 +6,7 @@
 /*   By: becaraya <becaraya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/22 15:59:52 by becaraya          #+#    #+#             */
-/*   Updated: 2019/05/24 11:28:32 by becaraya         ###   ########.fr       */
+/*   Updated: 2019/05/27 10:36:29 by becaraya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,9 @@ typedef struct		s_all
 	int				**map;
 }					t_all;
 
-int		read(t_all *all,char *map);
+int		pars(t_all *all,char *map);
+int		len_tn(char **tmp);
+int		*intsub(t_all *al, int i, int j);
+void	ft_free_tab(char **str);
 
 #endif

@@ -6,38 +6,12 @@
 /*   By: becaraya <becaraya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/22 18:13:45 by becaraya          #+#    #+#             */
-/*   Updated: 2019/05/24 15:19:05 by becaraya         ###   ########.fr       */
+/*   Updated: 2019/05/27 10:36:26 by becaraya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf.h"
 
-int			*intsub(t_all *al, int i, int j)
-{
-	int		count;
-	int		*result;
-
-	count = 0;
-	result = NULL;
-	if (!(result = (int **)malloc(sizeof(int *) * al->x_mx_map)))
-		return (EXIT_FAILURE);
-	ft_bzero(result, sizeof(int));
-	return (EXIT_SUCCESS);
-}
-
-void		ft_free_tab(char **str)
-{
-	int		i;
-
-	i = 0;
-	while (str[i])
-	{
-		ft_strdel(&str[i]);
-		i++;
-	}
-	free(*str);
-	str = NULL;
-}
 
 int			ft_is_valid_str(char *str)
 {
@@ -53,33 +27,88 @@ int			ft_is_valid_str(char *str)
 	return (1);
 }
 
-int		len_tn(char **tmp)
+int		mouv_line(char **tmp, t_all *al, int y)
 {
-	int		count;
+	int i;
 
-	count = 0;
-	while(tmp[count])
-		count++;
-	return (count);
+	i = 0;
+	if (!(al->map[y] = (int *)malloc(sizeof(int) * al->x_mx_map)))
+		return (EXIT_FAILURE);
+	while (i < al->x_mx_map)
+	{
+		al[i] = ft_atoi(tmp[i]);
+		i++;
+	}
+	return (EXIT_SUCCESS);
+}
+
+int		realloc_tab(char **tmp, t_all *al, int y)
+{
+	int		i;
+	int		j;
+	int		**tab_int_tmp;
+
+	i = 0;
+	j = 0;
+	if ((!(tab_int_tmp = (int **)malloc(sizeof(int *)))))
+		return (EXIT_FAILURE);
+	while (i < y)
+	{
+		if ((!(tab_int_tmp[i] = (int *)malloc(sizeof(int) * al->x_mx_map))))
+			return (EXIT_FAILURE);
+		while (j < al->x_mx_map)
+		{
+			tab_int_tmp[i][j] = al->map[i][j];
+			j++;
+		}
+		j = 0;
+		ft_bzero(al->map[i], al->x_mx_map);
+		i++;
+	}
+	if ((!(al->map = (int **)malloc(sizeof(int*) * y + 1))))
+		return (EXIT_FAILURE);
+	i = 0;
+	j = 0;
+	while (i < y)
+	{
+		while (j < al->x_mx_map)
+		{
+			al->map[i][j] = tab_int_tmp[i][j];
+			j++;
+		}
+		j = 0;
+		free(tab[i]);
+		i++;
+	}
+	free(tab);
+	if (mouv_line(tmp, all, y) == EXIT_FAILURE)
+		return (EXIT_FAILURE);
+	return (EXIT_SUCCESS);
+}
+
+int		first_line(t_all *al, int len_lgn)
+{
+	if ((!(al->map = (int **)malloc(sizeof(int *)))))
+		return (EXIT_FAILURE);
+	al->x_mx_map = len_lgn;
+	return (EXIT_SUCCESS);
 }
 
 int		read_line(char *line, t_all *al, int y)
 {
-	int		i;
 	int		len_lgn;
 	char	**tmp;
 
-	i = 0;
 	if ((tmp = ft_strsplit(str, ' ')) == NULL || ((len_lgn = len_tb(tmp)) == 0))
 		return (EXIT_FAILURE);
-	if (al->x_mx_map == 0 && (!(al->map = (int**)malloc(sizeof(int*)))))
+	if (al->x_mx_map == 0 && (first_line(al, len_lgn) == EXIT_FAILURE))
 	{
 		ft_free_tab(tmp);
 		free(tmp);
 		return (EXIT_FAILURE);
 	}
-	if ((al->x_mx_map != 0 && al->x_mx_map != len_lgn)
-		|| (!(al->map[y] = (int*)malloc(sizeof(int) * len_lgn))))
+	if ((y == 0 && mouv_line(tmp, al, 0, len_lgn) == EXIT_FAILURE)
+		|| (y != 0 && realloc_tab(tmp, al, y) == EXIT_FAILURE))
 	{
 		//fct_free(le tableau d int deja malloc)
 		ft_free_tab(tmp);
@@ -88,7 +117,7 @@ int		read_line(char *line, t_all *al, int y)
 	}
 	ft_free_tab(tmp);
 	free(tmp);
-	return ((i == 0) ? EXIT_FAILURE : EXIT_SUCCESS);
+	return (EXIT_SUCCESS);
 }
 
 int		do_gnl(t_all *al, char *map)
@@ -120,6 +149,7 @@ int		pars(t_all *al, char *map)
 {
 	int y;
 
-	y = do_gnl(al, map);
+	if (do_gnl(al, map) == 0)
+		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }
