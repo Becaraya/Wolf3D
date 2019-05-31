@@ -6,7 +6,7 @@
 /*   By: becaraya <becaraya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/22 15:59:52 by becaraya          #+#    #+#             */
-/*   Updated: 2019/05/31 11:52:31 by becaraya         ###   ########.fr       */
+/*   Updated: 2019/05/31 15:49:42 by becaraya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,9 @@ int					ft_is_valid_str(char *str);
 int					ft_is_valid_tab(char **str, t_all *al);
 void				print_map(t_all *al);
 int					ft_add_coo(t_all *al, int x, int y, int z);
+int					list_to_tab(t_all *al);
+void				free_coo(t_coo *coo);
+void				free_tab_int(int **tab, int y);
+int					read_n_pars(t_all *al, char *argv);
 
 #endif

@@ -6,25 +6,11 @@
 /*   By: becaraya <becaraya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/27 09:51:41 by becaraya          #+#    #+#             */
-/*   Updated: 2019/05/31 11:43:48 by becaraya         ###   ########.fr       */
+/*   Updated: 2019/05/31 15:52:17 by becaraya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf.h"
-
-void		ft_free_tab(char **str)
-{
-	int		i;
-
-	i = 0;
-	while (str[i])
-	{
-		ft_strdel(&str[i]);
-		i++;
-	}
-	free(*str);
-	str = NULL;
-}
 
 int			ft_add_coo(t_all *al, int x, int y, int z)
 {
@@ -65,19 +51,25 @@ int			ft_is_valid_str(char *str)
 	return (1);
 }
 
-void	print_map(t_all *al)
+void	print_map(t_all *al) // a suppr
 {
 	int i;
-	int y;
+	int j;
+	t_coo *coo_h;
 
 	i = 0;
-	y = 0;
-	while (al->coo)
+	j = 0;
+	coo_h = al->coo;
+	while (i < al->y_mx_map)
 	{
-		if (al->coo->x == 0)
-			ft_putchar('\n');
-		ft_putnbr(al->coo->z);
-		ft_putchar(' ');
-		al->coo = al->coo->next;
+		while (j < al->x_mx_map)
+		{
+			ft_putnbr(al->map[i][j]);
+			ft_putchar(' ');
+			j++;
+		}
+		putchar('\n');
+		j = 0;
+		i++;
 	}
 }

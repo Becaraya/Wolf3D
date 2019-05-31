@@ -17,7 +17,8 @@ HEADERS_LIST = wolf.h
 HEADERS_DIR = ./includes/
 HEADERS = $(addprefix $(HEADERS_DIR), $(HEADERS_LIST))
 
-SRC_LIST = main.c \
+SRC_LIST = free.c \
+		main.c \
 		read.c \
 		tools.c
 

@@ -1,28 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: becaraya <becaraya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/22 15:59:05 by becaraya          #+#    #+#             */
-/*   Updated: 2019/05/31 15:54:53 by becaraya         ###   ########.fr       */
+/*   Created: 2019/05/31 15:51:13 by becaraya          #+#    #+#             */
+/*   Updated: 2019/05/31 15:55:44 by becaraya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf.h"
 
-int		main(int argc, char **argv)
+void		ft_free_tab(char **str)
 {
-	t_all	al;
+	int		i;
 
-	ft_bzero(&al, sizeof(t_all));
-	if (argc == 2)
+	i = 0;
+	while (str[i])
 	{
-		if (read_n_pars(&al, argv[1]) == EXIT_FAILURE)
-			return (0);
-		free_coo(al.coo);
-		// free_tab_int(al.map, al.y_mx_map);
+		ft_strdel(&str[i]);
+		i++;
 	}
-	return (0);
+	free(*str);
+	str = NULL;
+}
+
+void		free_coo(t_coo *coo)
+{
+	if ((coo->next))
+		free_coo(coo->next);
+	if (coo)
+		free(coo);
+}
+
+void		free_tab_int(int **tab, int y)
+{
+	int i;
+	
+	i = 0;
+	while (i < y)
+	{
+		free(tab[i]);
+		i++;
+	}
+	free(tab);
 }
