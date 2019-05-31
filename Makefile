@@ -3,11 +3,11 @@ NAME = wolf3d
 CC = gcc
 CCF = -fsanitize=address
 FLAGS = -Wall -Wextra
-LIBRARIES = -lft -L$(LIBFT_DIR) -L$(SDL_DIR) -lSDL2
+LIBRARIES = -lft -L$(LIBFT_DIR) -L$(SDL_DIR)
 INCLUDES = -I$(HEADERS_DIR) -I$(LIBFT_HEAD) -I$(SDL_PATH)
 
-SDL_DIR = $(HOME)/.brew/Cellar/sdl2/2.0.9_1/lib/
-SDL_PATH = /$(HOME)/.brew/Cellar/sdl2/2.0.9_1/include/SDL2
+SDL_DIR = ./SDL2.framework
+SDL_PATH = ./SDL2.framework/Versions/Current/Headers/
 
 LIBFT = $(LIBFT_DIR)libft.a
 LIBFT_DIR = ./Libft/

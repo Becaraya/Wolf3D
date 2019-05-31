@@ -6,7 +6,7 @@
 /*   By: becaraya <becaraya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/22 15:59:52 by becaraya          #+#    #+#             */
-/*   Updated: 2019/05/31 11:50:13 by becaraya         ###   ########.fr       */
+/*   Updated: 2019/05/31 11:52:31 by becaraya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <stdio.h>
 # include <math.h>
 # include <mlx.h>
-# include "/Library/Frameworks/SDL.framework/Versions/Current/Headers/SDL.h"
+# include "SDL.h"
 
 typedef struct		s_coo
 {
