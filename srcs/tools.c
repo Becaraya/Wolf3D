@@ -6,7 +6,7 @@
 /*   By: becaraya <becaraya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/27 09:51:41 by becaraya          #+#    #+#             */
-/*   Updated: 2019/05/28 12:54:49 by becaraya         ###   ########.fr       */
+/*   Updated: 2019/05/31 11:43:48 by becaraya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,28 +26,29 @@ void		ft_free_tab(char **str)
 	str = NULL;
 }
 
-int			ft_is_valid_tab(char **str, t_all *al)
+int			ft_add_coo(t_all *al, int x, int y, int z)
 {
-	int		i;
-	int		j;
+	t_coo	*new;
 
-	j = 0;
-	i = 0;
-	while(str[i])
+	if (al->coo->x == -1 && al->coo->y == -1 && al->coo->z == -1)
 	{
-		if (!(ft_is_valid_str(str[i])))
-			return (0);
-		i++;
+		al->coo->x = x;
+		al->coo->y = y;
+		al->coo->z = z;
+
 	}
-	if (al->y_mx_map == 0)
-		al->x_mx_map = i;
 	else
 	{
-		j = i;
-		if (j != al->x_mx_map)
-			return (0);
+		if (!(new = (t_coo *)malloc(sizeof(t_coo))))
+			return (EXIT_FAILURE);
+		new->next = NULL;
+		new->x = x;
+		new->y = y;
+		new->z = z;
+		al->coo->next = new;
+		al->coo = new;
 	}
-	return (1);
+	return (EXIT_SUCCESS);
 }
 
 int			ft_is_valid_str(char *str)
@@ -71,16 +72,12 @@ void	print_map(t_all *al)
 
 	i = 0;
 	y = 0;
-	while (i <= al->y_mx_map)
+	while (al->coo)
 	{
-		while (y < al->x_mx_map)
-		{
-			ft_putnbr(al->map[i][y]);
-			ft_putchar(' ');
-			y++;
-		}
-		putchar('\n');
-		y = 0;
-		i++;
+		if (al->coo->x == 0)
+			ft_putchar('\n');
+		ft_putnbr(al->coo->z);
+		ft_putchar(' ');
+		al->coo = al->coo->next;
 	}
 }

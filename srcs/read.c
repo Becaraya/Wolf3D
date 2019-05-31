@@ -6,116 +6,84 @@
 /*   By: becaraya <becaraya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/22 18:13:45 by becaraya          #+#    #+#             */
-/*   Updated: 2019/05/28 13:06:01 by becaraya         ###   ########.fr       */
+/*   Updated: 2019/05/31 11:28:48 by becaraya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf.h"
 
-int		mouv_line(t_all *al, char **tmp, int y)
-{
-	int		j;
-
-	j = 0;
-	if (!(al->map[y] = (int *)malloc(sizeof(int) * al->x_mx_map)))
-		return (EXIT_FAILURE);
-	ft_bzero(al->map[y], sizeof(int) * al->x_mx_map);
-	while (j < al->x_mx_map)
-	{
-		al->map[y][j] = ft_atoi(tmp[j]);
-		j++;
-	}
-	return (EXIT_SUCCESS);
-}
-
-int		mouv_tab(t_all *al, char **tmp, int **tmp_int)
+static int	ft_add_l(char **str, t_all *al, int *x, int y)
 {
 	int		i;
+	char	**tmp;
 
 	i = 0;
-	if (!(tmp_int = (int **)malloc(sizeof(int *) * al->y_mx_map + 1)))
+	if ((tmp = ft_strsplit(*str, ' ')) == NULL)
 		return (EXIT_FAILURE);
-	ft_bzero(tmp_int, sizeof(int*) * al->y_mx_map + 1)
-	while (i <= al->y_mx_map)
+	while (tmp[i])
 	{
-		if (!(tmp_int[i] = (int *)malloc(sizeof(int *) * al->x_mx_map)))
+		if (ft_is_valid_str(tmp[i]) == 0
+			|| ft_add_coo((al), i, y, ft_atoi(tmp[i])) == EXIT_FAILURE)
 		{
-			//free_tmp (**tmp) ft_free_tab;
+			ft_free_tab(tmp);
+			free(tmp);
 			return (EXIT_FAILURE);
 		}
-		ft_bzero(tmp_int[i], sizeof(int) * al->x_mx_map);
 		i++;
 	}
+	if (*x == 0)
+		*x = i;
+	else if (*x != i)
+		i = 0;
+	ft_free_tab(tmp);
+	free(tmp);
+	return ((i == 0) ? EXIT_FAILURE : EXIT_SUCCESS);
 }
 
-int		assign(t_all *al, char **tmp)
+static int	do_gnl(int fd, t_all *al, char *str, int error)
 {
-	int		**tmp_int;
-
-	if (al->y_mx_map == 0)
-	{
-		if (!(al->map = (int **)malloc(sizeof(int *) * 1))
-			|| (mouv_line(al, tmp, 0) == EXIT_FAILURE))
-			return (EXIT_FAILURE);
-	}
-	else if (mouv_tab(al, tmp, tmp_int) == EXIT_FAILURE)
-		return (EXIT_FAILURE);
-	return (EXIT_SUCCESS);
-}
-
-int		read_line(char *str, t_all *al, int y)
-{
-	char	**tmp;
-	int		len;
-
-	len = 0;
-	tmp = NULL;
-	al->y_mx_map = y;
-	if ((tmp = ft_strsplit(str, ' ')) == NULL)
-		return (EXIT_FAILURE);
-	if ((ft_is_valid_tab(tmp, al) == 0) || (assign(al, tmp) == EXIT_FAILURE))
-	{
-		//free_tmp (**tmp) ft_free_tab;
-		return (EXIT_FAILURE);
-	}
-	//ft_free_tab
-	return (EXIT_SUCCESS);
-}
-
-int		do_gnl(t_all *al, char *map)
-{
-	int		fd;
 	int		y;
-	int		error;
 	char	*line;
 
 	y = 0;
-	fd = 0;
 	line = NULL;
-	if ((fd = open(map, O_RDONLY)) == -1)
+	if ((fd = open(str, O_RDONLY)) == -1)
 		return (-1);
 	while ((error = get_next_line(fd, &line)) > 0)
 	{
-		if (read_line(line, al, y++) == EXIT_FAILURE)
+		if (ft_add_l(&line, al, &al->x_mx_map, y++) == EXIT_FAILURE)
 		{
-			//free_al->map
 			ft_strdel(&line);
 			close(fd);
-			return (EXIT_FAILURE);
+			return (-1);
 		}
 		ft_strdel(&line);
 	}
 	close(fd);
-	return (EXIT_SUCCESS);
+	return (y);
 }
 
-int		pars(t_all *al, char *map)
+int			pars(t_all *al, char *str, int fd)
 {
-	int y;
+	int		y;
+	int		error;
+	t_coo	*map_h;
 
-	y = 0;
-	if (do_gnl(al, map) == EXIT_FAILURE)
+	error = 0;
+	map_h = al->coo;
+	al->x_mx_map = 0;
+	y = do_gnl(fd, al, str, error);
+	al->coo = map_h;
+	if (error == -1 || y < 1 || (y == 1 && al->x_mx_map == 1))
 		return (EXIT_FAILURE);
-	print_map(al);
-	return (EXIT_SUCCESS);
+	if ((al->y_mx_map = y) != 0)
+	{
+		al->coo = map_h;
+		while (al->coo)
+			al->coo = al->coo->next;
+		al->coo = map_h;
+	}
+	else
+		al->coo = NULL;
+	return ((al->y_mx_map > 0) ? EXIT_SUCCESS : EXIT_FAILURE);
 }
