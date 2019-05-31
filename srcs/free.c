@@ -6,7 +6,7 @@
 /*   By: becaraya <becaraya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/31 15:51:13 by becaraya          #+#    #+#             */
-/*   Updated: 2019/05/31 15:55:44 by becaraya         ###   ########.fr       */
+/*   Updated: 2019/05/31 16:54:43 by becaraya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void		free_coo(t_coo *coo)
 void		free_tab_int(int **tab, int y)
 {
 	int i;
-	
+
 	i = 0;
 	while (i < y)
 	{

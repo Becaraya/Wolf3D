@@ -6,7 +6,7 @@
 /*   By: becaraya <becaraya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/27 09:51:41 by becaraya          #+#    #+#             */
-/*   Updated: 2019/05/31 15:52:17 by becaraya         ###   ########.fr       */
+/*   Updated: 2019/05/31 16:53:38 by becaraya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ int			ft_add_coo(t_all *al, int x, int y, int z)
 		al->coo->x = x;
 		al->coo->y = y;
 		al->coo->z = z;
-
 	}
 	else
 	{
@@ -51,11 +50,11 @@ int			ft_is_valid_str(char *str)
 	return (1);
 }
 
-void	print_map(t_all *al) // a suppr
+void		print_map(t_all *al) // a suppr
 {
-	int i;
-	int j;
-	t_coo *coo_h;
+	int		i;
+	int		j;
+	t_coo	*coo_h;
 
 	i = 0;
 	j = 0;
