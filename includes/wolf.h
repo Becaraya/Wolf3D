@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wolf.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: becaraya <becaraya@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pitriche <pitriche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/22 15:59:52 by becaraya          #+#    #+#             */
-/*   Updated: 2019/05/31 15:49:42 by becaraya         ###   ########.fr       */
+/*   Updated: 2019/05/31 17:00:11 by pitriche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,14 @@
 # include <math.h>
 # include <mlx.h>
 # include "SDL.h"
+
+typedef struct		s_player
+{
+	double	posx;
+	double	posy;
+	double	look;
+	double	fov;
+}					t_player;
 
 typedef struct		s_coo
 {
