@@ -6,13 +6,13 @@
 /*   By: becaraya <becaraya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/31 15:51:13 by becaraya          #+#    #+#             */
-/*   Updated: 2019/05/31 16:54:43 by becaraya         ###   ########.fr       */
+/*   Updated: 2019/06/03 09:28:14 by becaraya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf.h"
 
-void		ft_free_tab(char **str)
+void		free_tab_str(char **str)
 {
 	int		i;
 
@@ -23,7 +23,8 @@ void		ft_free_tab(char **str)
 		i++;
 	}
 	free(*str);
-	str = NULL;
+	// str = NULL;
+	free(str);
 }
 
 void		free_coo(t_coo *coo)

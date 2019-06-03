@@ -6,7 +6,7 @@
 /*   By: becaraya <becaraya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/22 18:13:45 by becaraya          #+#    #+#             */
-/*   Updated: 2019/05/31 15:55:19 by becaraya         ###   ########.fr       */
+/*   Updated: 2019/06/03 09:29:18 by becaraya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,7 @@ static int	ft_add_l(char **str, t_all *al, int *x, int y)
 		if (ft_is_valid_str(tmp[i]) == 0
 			|| ft_add_coo((al), i, y, ft_atoi(tmp[i])) == EXIT_FAILURE)
 		{
-			ft_free_tab(tmp);
-			free(tmp);
+			free_tab_str(tmp);
 			return (EXIT_FAILURE);
 		}
 		i++;
@@ -63,8 +62,7 @@ static int	ft_add_l(char **str, t_all *al, int *x, int y)
 		*x = i;
 	else if (*x != i)
 		i = 0;
-	ft_free_tab(tmp);
-	free(tmp);
+	free_tab_str(tmp);
 	return ((i == 0) ? EXIT_FAILURE : EXIT_SUCCESS);
 }
 

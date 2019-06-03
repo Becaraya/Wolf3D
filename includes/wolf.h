@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wolf.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pitriche <pitriche@student.42.fr>          +#+  +:+       +#+        */
+/*   By: becaraya <becaraya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/22 15:59:52 by becaraya          #+#    #+#             */
-/*   Updated: 2019/05/31 17:00:11 by pitriche         ###   ########.fr       */
+/*   Updated: 2019/06/03 09:24:58 by becaraya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ typedef struct		s_all
 int					pars(t_all *al, char *str, int fd);
 int					len_ti(char **tmp);
 int					*intsub(t_all *al, int i, int j);
-void				ft_free_tab(char **str);
 int					ft_is_valid_str(char *str);
 int					ft_is_valid_tab(char **str, t_all *al);
 void				print_map(t_all *al);
@@ -55,6 +54,7 @@ int					ft_add_coo(t_all *al, int x, int y, int z);
 int					list_to_tab(t_all *al);
 void				free_coo(t_coo *coo);
 void				free_tab_int(int **tab, int y);
+void				free_tab_str(char **str);
 int					read_n_pars(t_all *al, char *argv);
 
 #endif
