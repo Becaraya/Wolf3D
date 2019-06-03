@@ -19,6 +19,9 @@ HEADERS = $(addprefix $(HEADERS_DIR), $(HEADERS_LIST))
 
 SRC_LIST = free.c \
 		main.c \
+		render.c \
+		game.c \
+		event_func.c \
 		main_loop.c \
 		read.c \
 		tools.c \
@@ -41,9 +44,6 @@ RESET = \033[0m
 all: $(NAME)
 
 $(NAME): $(LIBFT) $(OBJ_DIR) $(OBJ)
-	@if !(brew ls --versions sdl2) > /dev/null; then\
-		brew install sdl2;\
-	fi
 	@echo "$(YELLOW)Sources compilation $(RESET)[$(GREEN)OK$(RESET)]\n"
 	@$(CC) $(FLAGS) $(LIBRARIES) $(INCLUDES) $(OBJ) -o $(NAME)
 	@echo "[$(BLUE)$(NAME) Compiled$(RESET)]"

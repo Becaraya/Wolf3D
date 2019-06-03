@@ -6,7 +6,7 @@
 /*   By: pitriche <pitriche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/22 15:59:52 by becaraya          #+#    #+#             */
-/*   Updated: 2019/06/03 17:04:41 by pitriche         ###   ########.fr       */
+/*   Updated: 2019/06/03 17:45:50 by pitriche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,15 @@ typedef struct		s_coo
 	struct s_coo	*next;
 }					t_coo;
 
+typedef struct		s_keys
+{
+	unsigned	m1:1;
+	unsigned	w:1;
+	unsigned	a:1;
+	unsigned	s:1;
+	unsigned	d:1;
+}					t_keys;
+
 typedef struct		s_all
 {
 	int				x_mx_map;
@@ -52,6 +61,8 @@ typedef struct		s_all
 
 	SDL_Window		*win;
 	SDL_Surface		*sur;
+
+	t_keys			k;
 
 	SDL_Event		ev;
 	char			fps;
@@ -66,6 +77,13 @@ typedef struct		s_all
 
 int					yeet(t_all *al);
 void				main_loop(t_all *al);
+void				game(t_all *al);
+void				render(t_all *al);
+
+void				key_func(t_all *al);
+void				mouse_func(t_all *al);
+
+
 int					pars(t_all *al, char *str, int fd);
 int					len_ti(char **tmp);
 int					*intsub(t_all *al, int i, int j);

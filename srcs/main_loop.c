@@ -6,7 +6,7 @@
 /*   By: pitriche <pitriche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/03 11:47:13 by pitriche          #+#    #+#             */
-/*   Updated: 2019/06/03 17:17:28 by pitriche         ###   ########.fr       */
+/*   Updated: 2019/06/03 17:57:16 by pitriche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,21 +31,11 @@ static void	dtime(t_all *al)
 	//printf("%d fps\n", 1000000 / al->dtime);//
 }
 
-static void	key_func(t_all *al)
-{
-	al->ev.key.keysym.sym == SDLK_ESCAPE ? yeet(al) : 0;
-}
-
-static void	mouse_func(t_all *al)
-{
-	printf("moootiooon  x>%u y>%u\n", al->ev.motion.x, al->ev.motion.y);
-}
-
 void		main_loop(t_all *al)
 {
 	while (1)
 	{
-		dtime(al);
+		printf("keys> %d%d%d%d\n", al->k.w, al->k.a, al->k.s, al->k.d);//
 		while (SDL_PollEvent(&al->ev) != 0)
 		{
 			al->ev.type == SDL_QUIT ? yeet(al) : 0;
@@ -55,5 +45,8 @@ void		main_loop(t_all *al)
 			if (al->ev.type == SDL_MOUSEMOTION)
 				mouse_func(al);
 		}
+		dtime(al);
+		game(al);
+		render(al);
 	}
 }
