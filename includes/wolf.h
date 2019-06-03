@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wolf.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: becaraya <becaraya@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pitriche <pitriche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/22 15:59:52 by becaraya          #+#    #+#             */
-/*   Updated: 2019/06/03 09:24:58 by becaraya         ###   ########.fr       */
+/*   Updated: 2019/06/03 17:04:41 by pitriche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,14 @@
 # include <stdio.h>
 # include <math.h>
 # include <mlx.h>
+# include <sys/time.h>
 # include "SDL.h"
+
+# define WIN_TITLE "s     p     o     o     k     y"
+# define WIN_SIZEX 1280
+# define WIN_SIZEY 720
+# define WIN_POSX 100
+# define WIN_POSY 100
 
 typedef struct		s_player
 {
@@ -40,10 +47,25 @@ typedef struct		s_all
 {
 	int				x_mx_map;
 	int				y_mx_map;
-	int				**map; // penser a changer en unsigned char et voir ou ca merde <3
+	int				**map; // ça merderas pas tkt <3
 	t_coo			*coo;
+
+	SDL_Window		*win;
+	SDL_Surface		*sur;
+
+	SDL_Event		ev;
+	char			fps;
+	unsigned		vsynch:1;
+	long			last_time;
+	long			curr_time;
+	long			tgt_time;
+	int				dtime;
+
+	char			v0id[32];
 }					t_all;
 
+int					yeet(t_all *al);
+void				main_loop(t_all *al);
 int					pars(t_all *al, char *str, int fd);
 int					len_ti(char **tmp);
 int					*intsub(t_all *al, int i, int j);

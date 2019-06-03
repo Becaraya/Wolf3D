@@ -1,49 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free.c                                             :+:      :+:    :+:   */
+/*   yeet.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pitriche <pitriche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/31 15:51:13 by becaraya          #+#    #+#             */
-/*   Updated: 2019/06/03 12:41:09 by pitriche         ###   ########.fr       */
+/*   Created: 2019/06/03 12:23:57 by pitriche          #+#    #+#             */
+/*   Updated: 2019/06/03 16:52:05 by pitriche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf.h"
 
-void		free_tab_str(char **str)
+int	yeet(t_all *al)
 {
-	int		i;
-
-	i = 0;
-	while (str[i])
-	{
-		ft_strdel(&str[i]);
-		i++;
-	}
-	free(*str);
-	// str = NULL;
-	free(str);
-}
-
-void		free_coo(t_coo *coo)
-{
-	if ((coo->next))
-		free_coo(coo->next);
-	if (coo)
-		free(coo);
-}
-
-void		free_tab_int(int **tab, int y)
-{
-	int i;
-
-	i = 0;
-	while (i < y)
-	{
-		free(tab[i]);
-		i++;
-	}
-	free(tab);
+	// put all free here, and use this function to quit on every cases
+	free_tab_int(al->map, al->y_mx_map);
+	SDL_DestroyWindow(al->win);
+	SDL_Quit();
+	exit(0);
 }

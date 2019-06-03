@@ -3,11 +3,11 @@ NAME = wolf3d
 CC = gcc
 CCF = -fsanitize=address
 FLAGS = -Wall -Wextra
-LIBRARIES = -lft -L$(LIBFT_DIR) -L$(SDL_DIR)
-INCLUDES = -I$(HEADERS_DIR) -I$(LIBFT_HEAD) -I$(SDL_PATH)
+LIBRARIES = -lft -L$(LIBFT_DIR) -lSDL2 -L$(SDL_DIR)
+INCLUDES = -I$(HEADERS_DIR) -I$(LIBFT_HEAD) -I$(SDL_HEAD)
 
-SDL_DIR = ./SDL2.framework
-SDL_PATH = ./SDL2.framework/Versions/Current/Headers/
+SDL_DIR = ./SDL2.framework/lib
+SDL_HEAD = ./SDL2.framework/Headers/
 
 LIBFT = $(LIBFT_DIR)libft.a
 LIBFT_DIR = ./Libft/
@@ -19,8 +19,10 @@ HEADERS = $(addprefix $(HEADERS_DIR), $(HEADERS_LIST))
 
 SRC_LIST = free.c \
 		main.c \
+		main_loop.c \
 		read.c \
-		tools.c
+		tools.c \
+		yeet.c \
 
 SRC_DIR = ./srcs/
 SRC = $(addprefix $(SRC_DIR), $(SRC_LIST))
