@@ -6,7 +6,7 @@
 /*   By: pitriche <pitriche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/22 15:59:05 by becaraya          #+#    #+#             */
-/*   Updated: 2019/06/03 17:04:01 by pitriche         ###   ########.fr       */
+/*   Updated: 2019/06/04 11:10:10 by pitriche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,12 @@ static void	init(t_all *al)
 	if (!(al->win = SDL_CreateWindow(WIN_TITLE, WIN_POSX, WIN_POSY, WIN_SIZEX,
 				WIN_SIZEY, SDL_WINDOW_SHOWN)))
 		exit(0);
-	al->sur = SDL_GetWindowSurface(al->win);
+	al->ren = SDL_CreateRenderer(al->win, -1, SDL_RENDERER_ACCELERATED |
+		SDL_RENDERER_PRESENTVSYNC);
+	al->tex = SDL_CreateTexture(al->ren, SDL_PIXELFORMAT_ARGB8888,
+		SDL_TEXTUREACCESS_STATIC, WIN_SIZEX, WIN_SIZEY);
+	al->pix = ft_memalloc(WIN_SIZEX * WIN_SIZEY * sizeof(int));
+	//ft_memset(al->pix, 0xff, WIN_SIZEX * WIN_SIZEY * sizeof(int));
 }
 
 int			main(int argc, char **argv)

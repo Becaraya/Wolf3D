@@ -6,7 +6,7 @@
 /*   By: pitriche <pitriche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/03 11:47:13 by pitriche          #+#    #+#             */
-/*   Updated: 2019/06/03 17:57:16 by pitriche         ###   ########.fr       */
+/*   Updated: 2019/06/04 11:01:09 by pitriche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,14 @@ static void	dtime(t_all *al)
 	al->dtime = al->curr_time - al->last_time;
 	al->last_time = al->curr_time;
 	al->tgt_time = al->last_time + 1000000 / al->fps;
-	//printf("%d fps\n", 1000000 / al->dtime);//
+	printf("%d fps\n", 1000000 / al->dtime);//
 }
 
 void		main_loop(t_all *al)
 {
 	while (1)
 	{
-		printf("keys> %d%d%d%d\n", al->k.w, al->k.a, al->k.s, al->k.d);//
+		// printf("keys> %d%d%d%d\n", al->k.w, al->k.a, al->k.s, al->k.d);
 		while (SDL_PollEvent(&al->ev) != 0)
 		{
 			al->ev.type == SDL_QUIT ? yeet(al) : 0;

@@ -6,7 +6,7 @@
 /*   By: pitriche <pitriche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/22 15:59:52 by becaraya          #+#    #+#             */
-/*   Updated: 2019/06/03 17:45:50 by pitriche         ###   ########.fr       */
+/*   Updated: 2019/06/04 10:55:08 by pitriche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,9 @@ typedef struct		s_all
 	t_coo			*coo;
 
 	SDL_Window		*win;
-	SDL_Surface		*sur;
+	SDL_Texture		*tex;
+	SDL_Renderer	*ren;
+	unsigned int	*pix; // tableau de pixel a editer pour afficher, ARGB
 
 	t_keys			k;
 
