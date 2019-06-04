@@ -20,6 +20,7 @@ HEADERS = $(addprefix $(HEADERS_DIR), $(HEADERS_LIST))
 SRC_LIST = free.c \
 		main.c \
 		render.c \
+		column.c \
 		game.c \
 		event_func.c \
 		main_loop.c \

@@ -6,7 +6,7 @@
 /*   By: pitriche <pitriche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/22 15:59:52 by becaraya          #+#    #+#             */
-/*   Updated: 2019/06/04 12:49:29 by pitriche         ###   ########.fr       */
+/*   Updated: 2019/06/04 16:28:03 by pitriche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,18 +27,18 @@
 # define WIN_POSX 100
 # define WIN_POSY 100
 
-# define ANG_DEG 0x200
-# define ANG_MSK 0x1ff
-
 # define LOOK_SENS 1.5
+
+# define M_2PI 6.283185307179586476925286766559005768394338798750211641949
 
 typedef struct		s_player
 {
 	double	posx;
 	double	posy;
-	double	look;
+	double	dir;
 	double	fov;
 	double	speed;
+	double	look_up;
 }					t_player;
 
 typedef struct		s_coo
@@ -72,6 +72,11 @@ typedef struct		s_all
 	SDL_Renderer	*ren;
 	unsigned int	*pix; // tableau de pixel a editer pour afficher, ARGB
 
+	int				hit;
+	double			hitx;
+	double			hity;
+	double			hitdst;
+
 	t_keys			k;
 	SDL_Event		ev;
 
@@ -82,7 +87,6 @@ typedef struct		s_all
 	long			tgt_time;
 	int				dtime;
 
-	double			cos[ANG_DEG];
 	char			v0id[32];
 }					t_all;
 
@@ -90,10 +94,10 @@ int					yeet(t_all *al);
 void				main_loop(t_all *al);
 void				game(t_all *al);
 void				render(t_all *al);
+void				column(t_all *al, int x, double dist, int texture, double xtext);
 
 void				key_func(t_all *al);
 void				mouse_func(t_all *al);
-
 
 int					pars(t_all *al, char *str, int fd);
 int					len_ti(char **tmp);

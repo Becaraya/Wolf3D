@@ -6,24 +6,11 @@
 /*   By: pitriche <pitriche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/22 15:59:05 by becaraya          #+#    #+#             */
-/*   Updated: 2019/06/04 12:20:53 by pitriche         ###   ########.fr       */
+/*   Updated: 2019/06/04 15:42:16 by pitriche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf.h"
-
-static void	fill_cos_table(t_all *al)
-{
-	int i;
-
-	i = 0;
-	while (i < ANG_DEG)
-	{
-		al->cos[i] = cos((M_PI / ANG_DEG) * i);
-		//printf("% .8f\n", al->cos[i]);
-		i++;
-	}
-}
 
 static void	init_player(t_all *al)
 {
@@ -31,21 +18,19 @@ static void	init_player(t_all *al)
 	int j;
 
 	al->play.speed = 1;
-	j = 0;
-	while (j < al->y_mx_map)
+	al->play.look_up = 0;
+	al->play.fov = 2.309;
+	j = -1;
+	while (++j < al->y_mx_map)
 	{
-		i = 0;
-		while (i < al->x_mx_map)
-		{
+		i = -1;
+		while (++i < al->x_mx_map)
 			if (al->map[j][i] == 0)
 			{
-				al->play.posx = i;
-				al->play.posy = j;
+				al->play.posx = i + 0.5;
+				al->play.posy = j + 0.5;
 				return ;
 			}
-			i++;
-		}
-		j++;
 	}
 	ft_putstr_fd("Can't spawn player, map is full\n", 2);
 	yeet(al);
@@ -54,7 +39,6 @@ static void	init_player(t_all *al)
 static void	init(t_all *al)
 {
 	al->fps = 60;
-	fill_cos_table(al);
 	if (SDL_Init(SDL_INIT_VIDEO) < 0)
 		exit(0);
 	if (!(al->win = SDL_CreateWindow(WIN_TITLE, WIN_POSX, WIN_POSY, WIN_SIZEX,

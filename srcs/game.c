@@ -6,7 +6,7 @@
 /*   By: pitriche <pitriche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/03 17:39:58 by pitriche          #+#    #+#             */
-/*   Updated: 2019/06/04 12:52:42 by pitriche         ###   ########.fr       */
+/*   Updated: 2019/06/04 15:58:24 by pitriche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,21 @@
 static void	rotate(t_all *al, int lr)
 {
 	if (lr == 0)
-		al->play.look -= LOOK_SENS * al->dtime / 1000000;
+		al->play.dir -= LOOK_SENS * al->dtime / 1000000;
 	if (lr == 1)
-		al->play.look += LOOK_SENS * al->dtime / 1000000;
-	while (al->play.look > M_PI * 2)
-		al->play.look -= M_PI * 2;
-	while (al->play.look < 0)
-		al->play.look += M_PI * 2;
-	//printf("%.3f, dtime:%d\n", al->play.look, al->dtime);
+		al->play.dir += LOOK_SENS * al->dtime / 1000000;
+	while (al->play.dir > M_2PI)
+		al->play.dir -= M_2PI;
+	while (al->play.dir < 0)
+		al->play.dir += M_2PI;
+	//printf("%.3f, dtime:%d\n", al->play.dir, al->dtime);
+}
+
+static void	walls(t_all *al, double x, double y)
+{
+	al->play.posx += x;
+	al->play.posy += y;
+	// add wall hitboxes
 }
 
 static void	move(t_all *al, int fblr)
@@ -34,25 +41,13 @@ static void	move(t_all *al, int fblr)
 	dist =  al->play.speed * al->dtime / 1000000;
 	al->k.lshift ? dist *= 1.8 : 0;
 	if (fblr == 0)
-	{
-		al->play.posx += cos(al->play.look) * dist;
-		al->play.posy += sin(al->play.look) * dist;
-	}
+		walls(al, cos(al->play.dir) * dist, sin(al->play.dir) * dist);
 	if (fblr == 1)
-	{
-		al->play.posx -= cos(al->play.look) * dist;
-		al->play.posy -= sin(al->play.look) * dist;
-	}
+		walls(al, -cos(al->play.dir) * dist, -sin(al->play.dir) * dist);
 	if (fblr == 2)
-	{
-		al->play.posx += sin(al->play.look) * dist;
-		al->play.posy -= cos(al->play.look) * dist;
-	}
+		walls(al, sin(al->play.dir) * dist, -cos(al->play.dir) * dist);
 	if (fblr == 3)
-	{
-		al->play.posx -= sin(al->play.look) * dist;
-		al->play.posy += cos(al->play.look) * dist;
-	}
+		walls(al, -sin(al->play.dir) * dist, cos(al->play.dir) * dist);
 	printf("x%.1f y%.1f, dtime:%d\n", al->play.posx, al->play.posy, al->dtime);
 }
 
