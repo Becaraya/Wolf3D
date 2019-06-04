@@ -6,7 +6,7 @@
 /*   By: pitriche <pitriche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/22 15:59:52 by becaraya          #+#    #+#             */
-/*   Updated: 2019/06/04 10:55:08 by pitriche         ###   ########.fr       */
+/*   Updated: 2019/06/04 12:49:29 by pitriche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,18 @@
 # define WIN_POSX 100
 # define WIN_POSY 100
 
+# define ANG_DEG 0x200
+# define ANG_MSK 0x1ff
+
+# define LOOK_SENS 1.5
+
 typedef struct		s_player
 {
 	double	posx;
 	double	posy;
 	double	look;
 	double	fov;
+	double	speed;
 }					t_player;
 
 typedef struct		s_coo
@@ -45,11 +51,13 @@ typedef struct		s_coo
 
 typedef struct		s_keys
 {
-	unsigned	m1:1;
 	unsigned	w:1;
 	unsigned	a:1;
 	unsigned	s:1;
 	unsigned	d:1;
+	unsigned	left:1;
+	unsigned	righ:1;
+	unsigned	lshift:1;
 }					t_keys;
 
 typedef struct		s_all
@@ -65,15 +73,16 @@ typedef struct		s_all
 	unsigned int	*pix; // tableau de pixel a editer pour afficher, ARGB
 
 	t_keys			k;
-
 	SDL_Event		ev;
+
+	t_player		play;
 	char			fps;
-	unsigned		vsynch:1;
 	long			last_time;
 	long			curr_time;
 	long			tgt_time;
 	int				dtime;
 
+	double			cos[ANG_DEG];
 	char			v0id[32];
 }					t_all;
 
