@@ -6,13 +6,13 @@
 /*   By: becaraya <becaraya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/22 15:59:05 by becaraya          #+#    #+#             */
-/*   Updated: 2019/06/06 11:16:41 by becaraya         ###   ########.fr       */
+/*   Updated: 2019/06/06 12:52:12 by becaraya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf.h"
 
-// __attribute__((destructor)) void no_end(void);
+// __attribute__((destructor)) void the_end(void);
 
 static void	init_player(t_all *al)
 {
@@ -75,7 +75,7 @@ int			main(int argc, char **argv)
 	return (0);
 }
 
-// void    no_end(void)
+// void    the_end(void)
 // {
-//     while(42);
+// 	while(420);
 // }

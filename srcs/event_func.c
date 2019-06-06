@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   event_func.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pitriche <pitriche@student.42.fr>          +#+  +:+       +#+        */
+/*   By: becaraya <becaraya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/03 17:44:06 by pitriche          #+#    #+#             */
-/*   Updated: 2019/06/04 12:52:06 by pitriche         ###   ########.fr       */
+/*   Updated: 2019/06/06 12:51:54 by becaraya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf.h"
-#include <stdio.h> // pk t'as viré ma libft c'est tellement casse couilles de
-// debugger sans printf x)
 
 static void	keyup_func(t_all *al, SDL_KeyboardEvent kev)
 {

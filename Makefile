@@ -89,4 +89,4 @@ sani :  $(LIBFT) $(OBJ_DIR) $(OBJ)
 
 re: fclean all
 
-.PHONY: all clean fclean re sani
+.PHONY: all clean fclean re sani 
