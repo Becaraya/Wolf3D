@@ -3,11 +3,22 @@ NAME = wolf3d
 CC = gcc
 CCF = -fsanitize=address
 FLAGS = -Wall -Wextra
-LIBRARIES = -lft -L$(LIBFT_DIR) -lSDL2 -L$(SDL_DIR)
-INCLUDES = -I$(HEADERS_DIR) -I$(LIBFT_HEAD) -I$(SDL_HEAD)
+LIBRARIES = -lft -L$(LIBFT_DIR)
+INCLUDES = -I$(HEADERS_DIR) -I$(LIBFT_HEAD) $(SDL_HEAD)
 
 SDL_DIR = ./SDL2.framework/lib
-SDL_HEAD = ./SDL2.framework/Headers/
+SDL_HEAD = -I ./frameworks/SDL2.framework/Versions/A/Headers \
+		-I ./frameworks/SDL2_ttf.framework/Versions/A/Headers \
+		-I ./frameworks/SDL2_image.framework/Versions/A/Headers \
+		-I ./frameworks/SDL2_mixer.framework/Headers \
+		-I ./frameworks/SDL2_net.framework/Headers \
+		-F ./frameworks
+
+FRAMEWORKS	=	-F ./frameworks \
+		-rpath ./frameworks \
+		-framework OpenGL -framework AppKit -framework OpenCl \
+		-framework SDL2 -framework SDL2_ttf -framework SDL2_image \
+		-framework SDL2_mixer -framework SDL2_net
 
 LIBFT = $(LIBFT_DIR)libft.a
 LIBFT_DIR = ./Libft/
@@ -46,7 +57,7 @@ all: $(NAME)
 
 $(NAME): $(LIBFT) $(OBJ_DIR) $(OBJ)
 	@echo "$(YELLOW)Sources compilation $(RESET)[$(GREEN)OK$(RESET)]\n"
-	@$(CC) $(FLAGS) $(LIBRARIES) $(INCLUDES) $(OBJ) -o $(NAME)
+	@$(CC) $(FLAGS) $(LIBRARIES) $(INCLUDES) $(FRAMEWORKS) $(OBJ) -o $(NAME)
 	@echo "[$(BLUE)$(NAME) Compiled$(RESET)]"
 
 $(OBJ_DIR):
