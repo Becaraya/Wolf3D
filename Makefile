@@ -14,7 +14,7 @@ SDL_HEAD = -I ./frameworks/SDL2.framework/Versions/A/Headers \
 		-I ./frameworks/SDL2_net.framework/Headers \
 		-F ./frameworks
 
-FRAMEWORKS	=	-F ./frameworks \
+FRAMEWORKS = -F ./frameworks \
 		-rpath ./frameworks \
 		-framework OpenGL -framework AppKit -framework OpenCl \
 		-framework SDL2 -framework SDL2_ttf -framework SDL2_image \
