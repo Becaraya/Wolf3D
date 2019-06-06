@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   game.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pitriche <pitriche@student.42.fr>          +#+  +:+       +#+        */
+/*   By: becaraya <becaraya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/03 17:39:58 by pitriche          #+#    #+#             */
-/*   Updated: 2019/06/04 15:58:24 by pitriche         ###   ########.fr       */
+/*   Updated: 2019/06/06 10:02:58 by becaraya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf.h"
-#include <stdio.h> // pk t'as viré ma libft c'est tellement casse couilles de
-// debugger sans printf x)
 
 static void	rotate(t_all *al, int lr)
 {
@@ -48,7 +46,7 @@ static void	move(t_all *al, int fblr)
 		walls(al, sin(al->play.dir) * dist, -cos(al->play.dir) * dist);
 	if (fblr == 3)
 		walls(al, -sin(al->play.dir) * dist, cos(al->play.dir) * dist);
-	printf("x%.1f y%.1f, dtime:%d\n", al->play.posx, al->play.posy, al->dtime);
+	// printf("x%.1f y%.1f, dtime:%d\n", al->play.posx, al->play.posy, al->dtime);
 }
 
 void		game(t_all *al)

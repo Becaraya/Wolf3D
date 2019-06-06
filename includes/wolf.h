@@ -6,7 +6,7 @@
 /*   By: becaraya <becaraya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/22 15:59:52 by becaraya          #+#    #+#             */
-/*   Updated: 2019/06/06 09:02:12 by becaraya         ###   ########.fr       */
+/*   Updated: 2019/06/06 10:10:35 by becaraya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ typedef struct		s_all
 {
 	int				x_mx_map;
 	int				y_mx_map;
-	int				**map; // ça merderas pas tkt <3
+	int				**map; // ça merderas pas tkt <3 // Que Du Love
 	t_coo			*coo;
 
 	SDL_Window		*win;

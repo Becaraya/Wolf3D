@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pitriche <pitriche@student.42.fr>          +#+  +:+       +#+        */
+/*   By: becaraya <becaraya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/22 15:59:05 by becaraya          #+#    #+#             */
-/*   Updated: 2019/06/04 15:42:16 by pitriche         ###   ########.fr       */
+/*   Updated: 2019/06/06 10:27:14 by becaraya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,20 +35,51 @@ static void	init_player(t_all *al)
 	ft_putstr_fd("Can't spawn player, map is full\n", 2);
 	yeet(al);
 }
+/*
+** faut proteger tout les mallocs...
+*/
+static void init_2(t_all *al)
+{
+	if ((al->tex = SDL_CreateTexture(al->ren, SDL_PIXELFORMAT_ARGB8888,
+		SDL_TEXTUREACCESS_STATIC, WIN_SIZEX, WIN_SIZEY)) == NULL)
+	{
+		SDL_DestroyWindow(al->win);
+		SDL_DestroyRenderer(al->ren);
+		free_tab_int(al->map, al->y_mx_map);
+		exit(0);
+	}
+	if ((al->pix = ft_memalloc(WIN_SIZEX * WIN_SIZEY * sizeof(int))) == NULL)
+	{
+		SDL_DestroyWindow(al->win);
+		SDL_DestroyRenderer(al->ren);
+		SDL_DestroyTexture(al->tex);
+		free_tab_int(al->map, al->y_mx_map);
+		exit(0);
+	}
+}
 
 static void	init(t_all *al)
 {
 	al->fps = 60;
 	if (SDL_Init(SDL_INIT_VIDEO) < 0)
+	{
+		free_tab_int(al->map, al->y_mx_map);
 		exit(0);
+	}
 	if (!(al->win = SDL_CreateWindow(WIN_TITLE, WIN_POSX, WIN_POSY, WIN_SIZEX,
 				WIN_SIZEY, SDL_WINDOW_SHOWN)))
+	{
+		free_tab_int(al->map, al->y_mx_map);
 		exit(0);
-	al->ren = SDL_CreateRenderer(al->win, -1, SDL_RENDERER_ACCELERATED |
-		SDL_RENDERER_PRESENTVSYNC);
-	al->tex = SDL_CreateTexture(al->ren, SDL_PIXELFORMAT_ARGB8888,
-		SDL_TEXTUREACCESS_STATIC, WIN_SIZEX, WIN_SIZEY);
-	al->pix = ft_memalloc(WIN_SIZEX * WIN_SIZEY * sizeof(int));
+	}
+	if ((al->ren = SDL_CreateRenderer(al->win, -1, SDL_RENDERER_ACCELERATED |
+		SDL_RENDERER_PRESENTVSYNC)) == NULL)
+	{
+		SDL_DestroyWindow(al->win);
+		free_tab_int(al->map, al->y_mx_map);
+		exit(0);
+	}
+	init_2(al);
 	init_player(al);
 }
 

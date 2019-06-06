@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pitriche <pitriche@student.42.fr>          +#+  +:+       +#+        */
+/*   By: becaraya <becaraya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/03 17:38:54 by pitriche          #+#    #+#             */
-/*   Updated: 2019/06/04 19:33:20 by pitriche         ###   ########.fr       */
+/*   Updated: 2019/06/06 09:45:46 by becaraya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf.h"
-#include <stdio.h> // pk t'as viré ma libft c'est tellement casse couilles de
-// debugger sans printf x)
 
 static void	wall_ver(t_all *al, double ang)
 {
@@ -29,7 +27,7 @@ static void	wall_ver(t_all *al, double ang)
 				return ;
 			al->hitx = (int)x + 1;
 			al->hity = y + al->hitx / tan(ang);
-			printf("%.2f %.2f  ", al->hitx, al->hity);
+			// printf("%.2f %.2f  ", al->hitx, al->hity);
 			al->hity > 0 && al->hity <= al->y_mx_map ? al->hit =
 			al->map[(int)al->hity][(int)al->hitx + 1] : 0;
 			if (al->hit)
@@ -64,7 +62,7 @@ void		render(t_all *al)
 	// ray casting shit
 	for (int x = 0; x < WIN_SIZEX; x++)
 		cast_ray(al, x);
-	printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+	// printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
 	SDL_UpdateTexture(al->tex, 0, al->pix, WIN_SIZEX * sizeof(int));
 	SDL_RenderCopy(al->ren, al->tex, 0, 0);
 	SDL_RenderPresent(al->ren);
