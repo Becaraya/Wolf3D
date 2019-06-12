@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   column.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: becaraya <becaraya@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pitriche <pitriche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/04 13:46:26 by pitriche          #+#    #+#             */
-/*   Updated: 2019/06/06 12:51:17 by becaraya         ###   ########.fr       */
+/*   Updated: 2019/06/06 18:19:01 by pitriche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf.h"
 
-void	column(t_all *al, int x, double dist, int texture, double xtext)
+void	column(t_all *al, int x, double dist)
 {
 	int wall_height;
 
@@ -26,5 +26,5 @@ void	column(t_all *al, int x, double dist, int texture, double xtext)
 	wall_height = wall_height > WIN_SIZEY ? WIN_SIZEY : wall_height;
 	for (int y = WIN_SIZEY / 2 - wall_height / 2; y < WIN_SIZEY / 2
 		+ wall_height / 2; y++)
-		al->pix[WIN_SIZEX * y + x] = 0xaba09d;
+		al->pix[WIN_SIZEX * y + x] = al->hit == 1 ? 0xaba09d : 0xadc3c5;
 }

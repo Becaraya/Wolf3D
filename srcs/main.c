@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: becaraya <becaraya@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pitriche <pitriche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/22 15:59:05 by becaraya          #+#    #+#             */
-/*   Updated: 2019/06/06 12:52:12 by becaraya         ###   ########.fr       */
+/*   Updated: 2019/06/06 17:48:08 by pitriche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ static void	init_player(t_all *al)
 	int i;
 	int j;
 
-	al->play.speed = 1;
+	al->play.speed = 1.5;
 	al->play.look_up = 0;
-	al->play.fov = 2.309;
+	al->play.fov = 1;
 	j = -1;
 	while (++j < al->y_mx_map)
 	{

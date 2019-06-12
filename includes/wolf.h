@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wolf.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: becaraya <becaraya@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pitriche <pitriche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/22 15:59:52 by becaraya          #+#    #+#             */
-/*   Updated: 2019/06/06 10:10:35 by becaraya         ###   ########.fr       */
+/*   Updated: 2019/06/06 18:19:06 by pitriche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,10 +72,15 @@ typedef struct		s_all
 	SDL_Renderer	*ren;
 	unsigned int	*pix; // tableau de pixel a editer pour afficher, ARGB
 
+	int				vhit;
+	double			vhitx;
+	double			vhity;
+	double			vhitdst;
+	int				hhit;
+	double			hhitx;
+	double			hhity;
+	double			hhitdst;
 	int				hit;
-	double			hitx;
-	double			hity;
-	double			hitdst;
 
 	t_keys			k;
 	SDL_Event		ev;
@@ -94,7 +99,7 @@ int					yeet(t_all *al);
 void				main_loop(t_all *al);
 void				game(t_all *al);
 void				render(t_all *al);
-void				column(t_all *al, int x, double dist, int texture, double xtext);
+void				column(t_all *al, int x, double dist);
 
 void				key_func(t_all *al);
 void				mouse_func(t_all *al);
