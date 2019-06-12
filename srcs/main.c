@@ -6,13 +6,19 @@
 /*   By: becaraya <becaraya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/22 15:59:05 by becaraya          #+#    #+#             */
-/*   Updated: 2019/06/11 10:57:20 by becaraya         ###   ########.fr       */
+/*   Updated: 2019/06/12 16:33:10 by becaraya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf.h"
 
 // __attribute__((destructor)) void the_end(void);
+
+static int	load_image(t_all *al)
+{
+	if (!(al->pct_menu = SDL_LoadBMP("../ressource/menu.bmp")))
+		yeet(al);
+}
 
 static void	init_player(t_all *al)
 {
@@ -40,6 +46,7 @@ static void	init_player(t_all *al)
 
 static void	init(t_all *al)
 {
+	al->status = ST_MENU;
 	al->fps = 60;
 	if (SDL_Init(SDL_INIT_VIDEO) < 0)
 		yeet(al);
@@ -54,6 +61,7 @@ static void	init(t_all *al)
 		yeet(al);
 	if ((al->pix = ft_memalloc(WIN_SIZEX * WIN_SIZEY * sizeof(int))) == NULL)
 		yeet(al);
+	load_image(al);
 	init_player(al);
 }
 

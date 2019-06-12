@@ -30,6 +30,7 @@ HEADERS = $(addprefix $(HEADERS_DIR), $(HEADERS_LIST))
 
 SRC_LIST = free.c \
 		main.c \
+		menu.c \
 		render.c \
 		column.c \
 		game.c \
@@ -37,7 +38,7 @@ SRC_LIST = free.c \
 		main_loop.c \
 		read.c \
 		tools.c \
-		yeet.c \
+		yeet.c
 
 SRC_DIR = ./srcs/
 SRC = $(addprefix $(SRC_DIR), $(SRC_LIST))

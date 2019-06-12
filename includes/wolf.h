@@ -6,7 +6,7 @@
 /*   By: becaraya <becaraya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/22 15:59:52 by becaraya          #+#    #+#             */
-/*   Updated: 2019/06/06 10:10:35 by becaraya         ###   ########.fr       */
+/*   Updated: 2019/06/12 16:12:52 by becaraya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,12 @@
 # define LOOK_SENS 1.5
 
 # define M_2PI 6.283185307179586476925286766559005768394338798750211641949
+
+# define ST_MENU 0
+# define ST_GAME 1
+# define ST_SETTING 2 
+# define ST_PAUSE 3
+# define ST_CAGE 99999
 
 typedef struct		s_player
 {
@@ -62,6 +68,7 @@ typedef struct		s_keys
 
 typedef struct		s_all
 {
+	int				status;
 	int				x_mx_map;
 	int				y_mx_map;
 	int				**map; // ça merderas pas tkt <3 // Que Du Love
@@ -88,6 +95,8 @@ typedef struct		s_all
 	int				dtime;
 
 	char			v0id[32];
+
+	SDL_Surface		*pct_menu;
 }					t_all;
 
 int					yeet(t_all *al);
