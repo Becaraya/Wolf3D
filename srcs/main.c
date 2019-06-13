@@ -6,7 +6,7 @@
 /*   By: pitriche <pitriche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/22 15:59:05 by becaraya          #+#    #+#             */
-/*   Updated: 2019/06/06 17:48:08 by pitriche         ###   ########.fr       */
+/*   Updated: 2019/06/13 14:38:04 by pitriche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	init_player(t_all *al)
 	int i;
 	int j;
 
-	al->play.speed = 1.5;
+	al->play.speed = WALK_SPEED;
 	al->play.look_up = 0;
 	al->play.fov = 1;
 	j = -1;
@@ -41,6 +41,8 @@ static void	init_player(t_all *al)
 static void	init(t_all *al)
 {
 	al->fps = 60;
+	al->mnmp_sc = MINIMAP_SC / (al->x_mx_map > al->y_mx_map ? al->x_mx_map :
+		al->y_mx_map);
 	if (SDL_Init(SDL_INIT_VIDEO) < 0)
 		yeet(al);
 	if (!(al->win = SDL_CreateWindow(WIN_TITLE, WIN_POSX, WIN_POSY, WIN_SIZEX,

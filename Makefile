@@ -32,6 +32,8 @@ SRC_LIST = free.c \
 		main.c \
 		render.c \
 		column.c \
+		minimap.c \
+		draw_line.c \
 		game.c \
 		event_func.c \
 		main_loop.c \

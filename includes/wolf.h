@@ -6,7 +6,7 @@
 /*   By: pitriche <pitriche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/22 15:59:52 by becaraya          #+#    #+#             */
-/*   Updated: 2019/06/06 18:19:06 by pitriche         ###   ########.fr       */
+/*   Updated: 2019/06/13 16:02:20 by pitriche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,41 @@
 # define WIN_POSX 100
 # define WIN_POSY 100
 
-# define LOOK_SENS 1.5
+# define MINIMAP_SC 300
+# define MINIMAP_PX 980
+# define MINIMAP_PY 0
+# define MINIMAP_BGCOL 0x45454b
+# define MINIMAP_FGCOL 0xe6e6fa
+# define MINIMAP_RAYCOL 0x00a9b7
 
+# define HITBOX_RADIUS 0.25
+# define WALK_SPEED 3.5
+//		set that to 1.8 or something
+# define LOOK_SENS 2.5
+//		set that to 1.5
 # define M_2PI 6.283185307179586476925286766559005768394338798750211641949
+
+typedef struct		s_bren
+{
+	int dx;
+	int dy;
+	int d;
+	int x;
+	int y;
+	int xi;
+	int yi;
+	int color;
+}					t_bren;
+
+typedef struct			s_dot
+{
+	int x;
+	int	y;
+}						t_dot;
+
+/*
+** The structs above are for bresenham
+*/
 
 typedef struct		s_player
 {
@@ -72,15 +104,15 @@ typedef struct		s_all
 	SDL_Renderer	*ren;
 	unsigned int	*pix; // tableau de pixel a editer pour afficher, ARGB
 
-	int				vhit;
-	double			vhitx;
-	double			vhity;
-	double			vhitdst;
 	int				hhit;
 	double			hhitx;
 	double			hhity;
 	double			hhitdst;
 	int				hit;
+	double			hitx;
+	double			hity;
+	double			hitdst;
+	int				mnmp_sc;
 
 	t_keys			k;
 	SDL_Event		ev;
@@ -100,6 +132,9 @@ void				main_loop(t_all *al);
 void				game(t_all *al);
 void				render(t_all *al);
 void				column(t_all *al, int x, double dist);
+void				draw_line(t_all *al);
+void				minimap(t_all *al);
+void				cast_ray(t_all *al, int x);
 
 void				key_func(t_all *al);
 void				mouse_func(t_all *al);
