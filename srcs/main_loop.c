@@ -6,11 +6,36 @@
 /*   By: becaraya <becaraya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/03 11:47:13 by pitriche          #+#    #+#             */
-/*   Updated: 2019/06/06 09:45:37 by becaraya         ###   ########.fr       */
+/*   Updated: 2019/06/14 14:16:38 by becaraya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf.h"
+
+void	print_surface(t_all *al, SDL_Surface *surface)
+{
+	int i;
+	int j;
+
+	i = 0;
+	j = 0;
+	SDL_UnlockSurface(surface);
+	while (i < WIN_SIZEX * WIN_SIZEY)
+	{
+		al->pix[i] = *(unsigned int *)surface->pixels++;
+		i++;
+	}
+	SDL_LockSurface(surface);
+}
+
+void	menu(t_all *al)
+{
+	print_surface(al, al->pct_menu);
+	SDL_UpdateTexture(al->tex, 0, al->pix, WIN_SIZEX * sizeof(int));
+	SDL_RenderCopy(al->ren, al->tex, 0, 0);
+	SDL_RenderPresent(al->ren);
+}
+
 
 static void	dtime(t_all *al)
 {
@@ -45,7 +70,12 @@ void		main_loop(t_all *al)
 				mouse_func(al);
 		}
 		dtime(al);
-		game(al);
-		render(al);
+		if (al->status == ST_GAME)
+		{
+			game(al);
+			render(al);
+		}
+		else
+			menu(al);
 	}
 }

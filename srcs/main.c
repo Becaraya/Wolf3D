@@ -3,16 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pitriche <pitriche@student.42.fr>          +#+  +:+       +#+        */
+/*   By: becaraya <becaraya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/22 15:59:05 by becaraya          #+#    #+#             */
-/*   Updated: 2019/06/13 14:38:04 by pitriche         ###   ########.fr       */
+/*   Updated: 2019/06/14 15:03:25 by becaraya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf.h"
 
 // __attribute__((destructor)) void the_end(void);
+
+static int	load_image(t_all *al)
+{
+	ft_putendl("test");
+	al->pct_menu = SDL_LoadBMP("../ressource/menu.bmp");
+	ft_putendl("test");
+
+}
 
 static void	init_player(t_all *al)
 {
@@ -40,6 +48,9 @@ static void	init_player(t_all *al)
 
 static void	init(t_all *al)
 {
+	al->look_u_d = 0;
+
+	al->status = ST_GAME;
 	al->fps = 60;
 	al->mnmp_sc = MINIMAP_SC / (al->x_mx_map > al->y_mx_map ? al->x_mx_map :
 		al->y_mx_map);
@@ -56,6 +67,7 @@ static void	init(t_all *al)
 		yeet(al);
 	if ((al->pix = ft_memalloc(WIN_SIZEX * WIN_SIZEY * sizeof(int))) == NULL)
 		yeet(al);
+	load_image(al);
 	init_player(al);
 }
 

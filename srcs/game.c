@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pitriche <pitriche@student.42.fr>          +#+  +:+       +#+        */
+/*   By: becaraya <becaraya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/03 17:39:58 by pitriche          #+#    #+#             */
-/*   Updated: 2019/06/13 15:43:17 by pitriche         ###   ########.fr       */
+/*   Updated: 2019/06/14 15:28:48 by becaraya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,10 @@ static void	move(t_all *al)
 		walls(al, cos(al->play.dir) * dist, -sin(al->play.dir) * dist);
 	if (al->k.d)
 		walls(al, -cos(al->play.dir) * dist, sin(al->play.dir) * dist);
+	if (al->k.up)
+		al->look_u_d = (al->look_u_d < 400) ? al->look_u_d + 10 : al->look_u_d;
+	if (al->k.down)
+		al->look_u_d = (al->look_u_d > 0) ? al->look_u_d - 10 : al->look_u_d;
 	// al->k.w || al->k.a || al->k.s || al->k.d ?
 	// printf("x%.1f y%.1f, dtime:%d\n", al->play.posx, al->play.posy, al->dtime) : 0;
 }

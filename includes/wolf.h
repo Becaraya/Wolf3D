@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wolf.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pitriche <pitriche@student.42.fr>          +#+  +:+       +#+        */
+/*   By: becaraya <becaraya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/22 15:59:52 by becaraya          #+#    #+#             */
-/*   Updated: 2019/06/13 16:02:20 by pitriche         ###   ########.fr       */
+/*   Updated: 2019/06/14 15:28:55 by becaraya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,12 @@
 # define WIN_SIZEY 720
 # define WIN_POSX 100
 # define WIN_POSY 100
+
+# define ST_MENU 0
+# define ST_GAME 1
+# define ST_PAUSE 2
+# define ST_SETTING 3
+# define ST_CAGE 4
 
 # define MINIMAP_SC 300
 # define MINIMAP_PX 980
@@ -71,6 +77,7 @@ typedef struct		s_player
 	double	fov;
 	double	speed;
 	double	look_up;
+	double	sprint;
 }					t_player;
 
 typedef struct		s_coo
@@ -89,11 +96,16 @@ typedef struct		s_keys
 	unsigned	d:1;
 	unsigned	left:1;
 	unsigned	righ:1;
+	unsigned	up:1;
+	unsigned	down:1;
 	unsigned	lshift:1;
+	unsigned	space:1;
 }					t_keys;
 
 typedef struct		s_all
 {
+	int				status;
+
 	int				x_mx_map;
 	int				y_mx_map;
 	int				**map; // ça merderas pas tkt <3 // Que Du Love
@@ -125,6 +137,9 @@ typedef struct		s_all
 	int				dtime;
 
 	char			v0id[32];
+	int				look_u_d;
+	
+	SDL_Surface		*pct_menu;
 }					t_all;
 
 int					yeet(t_all *al);
