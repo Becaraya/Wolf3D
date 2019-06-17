@@ -6,7 +6,7 @@
 /*   By: becaraya <becaraya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/22 15:59:05 by becaraya          #+#    #+#             */
-/*   Updated: 2019/06/17 13:57:43 by becaraya         ###   ########.fr       */
+/*   Updated: 2019/06/17 17:57:12 by becaraya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,7 @@
 
 static int	load_image(t_all *al)
 {
-	ft_putendl("test");
 	al->pct_menu = SDL_LoadBMP("../ressource/menu.bmp");
-	ft_putendl("test");
-
 }
 
 static void	init_player(t_all *al)
@@ -27,6 +24,7 @@ static void	init_player(t_all *al)
 	int i;
 	int j;
 
+	al->play.brightness = 3;
 	al->play.speed = WALK_SPEED;
 	al->play.look_up = 0;
 	al->play.fov = 1;

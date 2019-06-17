@@ -6,7 +6,7 @@
 /*   By: becaraya <becaraya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/22 15:59:52 by becaraya          #+#    #+#             */
-/*   Updated: 2019/06/17 13:57:38 by becaraya         ###   ########.fr       */
+/*   Updated: 2019/06/17 17:56:39 by becaraya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ typedef struct		s_player
 	double	speed;
 	double	look_up;
 	double	sprint;
+	double	brightness;
 }					t_player;
 
 typedef struct		s_coo
@@ -167,5 +168,6 @@ void				free_tab_int(int **tab, int y);
 void				free_tab_str(char **str);
 int					read_n_pars(t_all *al, char *argv);
 int					verif_n_free(t_all *al);
+void				menu(t_all *al);
 
 #endif

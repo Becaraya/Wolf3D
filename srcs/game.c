@@ -6,7 +6,7 @@
 /*   By: becaraya <becaraya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/03 17:39:58 by pitriche          #+#    #+#             */
-/*   Updated: 2019/06/17 16:56:16 by becaraya         ###   ########.fr       */
+/*   Updated: 2019/06/17 17:31:30 by becaraya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static void	move(t_all *al)
 	if (al->k.d)
 		walls(al, -cos(al->play.dir) * dist, sin(al->play.dir) * dist);
 	if (al->k.up)
-		al->look_u_d = (al->look_u_d < 400) ? al->look_u_d + 10 : al->look_u_d;
+		al->look_u_d = (al->look_u_d < 1000) ? al->look_u_d + 10 : al->look_u_d;
 	if (al->k.down)
 		al->look_u_d = (al->look_u_d > -300) ? al->look_u_d - 10 : al->look_u_d;
 	// al->k.w || al->k.a || al->k.s || al->k.d ?

@@ -6,7 +6,7 @@
 /*   By: becaraya <becaraya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/04 13:46:26 by pitriche          #+#    #+#             */
-/*   Updated: 2019/06/17 16:54:56 by becaraya         ###   ########.fr       */
+/*   Updated: 2019/06/17 17:58:04 by becaraya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,13 @@ void	column(t_all *al, int x, double dist)
 
 	// sky and ground
 	for (int y = 0; y < (WIN_SIZEY / 2) + al->look_u_d; y++)
-		al->pix[WIN_SIZEX * (y) + x] = 0x050505;
+		al->pix[WIN_SIZEX * (y) + x] = shade(0x050505, 5/dist);
+		// al->pix[WIN_SIZEX * (y) + x] = 0x050505;
 		// al->pix[WIN_SIZEX * y + x] = 0xf17d3c;
 	for (int y = (WIN_SIZEY / 2)  + al->look_u_d; y < WIN_SIZEY; y++)
-		al->pix[WIN_SIZEX * (y) + x] = 0x050505;
+		al->pix[WIN_SIZEX * (y) + x] = shade(0x050505, 5/dist);
+		
+		// al->pix[WIN_SIZEX * (y) + x] = 0x050505;
 		// al->pix[WIN_SIZEX * (y) + x] = 0x98dbe0;//0x050505;
 
 
@@ -55,6 +58,6 @@ void	column(t_all *al, int x, double dist)
 		+ wall_height / 2) + al->look_u_d; y++)
 	{
 		if (y < WIN_SIZEY && y >= 0)
-			al->pix[WIN_SIZEX * y + x] = al->hit == 1 ? shade(0xaba09d, 5/dist) : shade(0xadc3c5, 5/dist);
+			al->pix[WIN_SIZEX * y + x] = al->hit == 1 ? shade(0xaba09d, al->play.brightness / dist) : shade(0xadc3c5, al->play.brightness/dist);
 	}
 }
