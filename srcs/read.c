@@ -6,7 +6,7 @@
 /*   By: becaraya <becaraya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/22 18:13:45 by becaraya          #+#    #+#             */
-/*   Updated: 2019/06/03 09:29:18 by becaraya         ###   ########.fr       */
+/*   Updated: 2019/06/17 13:57:26 by becaraya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,5 +139,5 @@ int			read_n_pars(t_all *al, char *argv)
 		return (EXIT_FAILURE);
 	}
 	al->coo = coo_h;
-	return (EXIT_SUCCESS);
+	return (verif_n_free(al));
 }

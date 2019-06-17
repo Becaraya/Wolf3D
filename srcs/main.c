@@ -6,7 +6,7 @@
 /*   By: becaraya <becaraya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/22 15:59:05 by becaraya          #+#    #+#             */
-/*   Updated: 2019/06/14 15:03:25 by becaraya         ###   ########.fr       */
+/*   Updated: 2019/06/17 13:57:43 by becaraya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,6 @@ int			main(int argc, char **argv)
 	{
 		if (read_n_pars(&al, argv[1]) == EXIT_FAILURE)
 			return (0);
-		free_coo(al.coo);
 		print_map(&al);
 		init(&al);
 		main_loop(&al);
