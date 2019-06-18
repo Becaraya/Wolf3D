@@ -6,7 +6,7 @@
 /*   By: becaraya <becaraya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/03 11:47:13 by pitriche          #+#    #+#             */
-/*   Updated: 2019/06/17 17:46:48 by becaraya         ###   ########.fr       */
+/*   Updated: 2019/06/18 17:23:12 by becaraya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,12 @@ void		main_loop(t_all *al)
 			game(al);
 			render(al);
 		}
-		else
+		if (al->status == ST_PAUSE)
+		{
+			SDL_ShowCursor(1);
+			render(al);
+		}
+		if (al->status == ST_MENU)
 			menu(al);
 	}
 }

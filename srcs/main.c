@@ -6,7 +6,7 @@
 /*   By: becaraya <becaraya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/22 15:59:05 by becaraya          #+#    #+#             */
-/*   Updated: 2019/06/17 17:57:12 by becaraya         ###   ########.fr       */
+/*   Updated: 2019/06/18 17:35:30 by becaraya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static void	init_player(t_all *al)
 
 static void	init(t_all *al)
 {
-	al->look_u_d = 0;
+	al->play.look_up = 0;
 
 	al->status = ST_GAME;
 	al->fps = 60;

@@ -40,6 +40,7 @@ SRC_LIST = free.c \
 		read.c \
 		tools.c \
 		yeet.c \
+		pause.c \
 		menu.c
 
 SRC_DIR = ./srcs/

@@ -6,7 +6,7 @@
 /*   By: becaraya <becaraya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/03 17:39:58 by pitriche          #+#    #+#             */
-/*   Updated: 2019/06/17 17:31:30 by becaraya         ###   ########.fr       */
+/*   Updated: 2019/06/18 17:44:40 by becaraya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,15 +58,17 @@ static void	move(t_all *al)
 	if (al->k.d)
 		walls(al, -cos(al->play.dir) * dist, sin(al->play.dir) * dist);
 	if (al->k.up)
-		al->look_u_d = (al->look_u_d < 1000) ? al->look_u_d + 10 : al->look_u_d;
+		al->play.look_up = (al->play.look_up < 1000) ? al->play.look_up + 10 : al->play.look_up;
 	if (al->k.down)
-		al->look_u_d = (al->look_u_d > -300) ? al->look_u_d - 10 : al->look_u_d;
+		al->play.look_up = (al->play.look_up > -300) ? al->play.look_up - 10 : al->play.look_up;
 	// al->k.w || al->k.a || al->k.s || al->k.d ?
 	// printf("x%.1f y%.1f, dtime:%d\n", al->play.posx, al->play.posy, al->dtime) : 0;
 }
 
 void		game(t_all *al)
 {
+	SDL_ShowCursor(SDL_DISABLE);
+	SDL_WarpMouseInWindow(al->win, WIN_SIZEX/2, WIN_SIZEY/2);
 	move(al);
 	rotate(al);
 }

@@ -6,7 +6,7 @@
 /*   By: becaraya <becaraya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/22 15:59:52 by becaraya          #+#    #+#             */
-/*   Updated: 2019/06/17 17:56:39 by becaraya         ###   ########.fr       */
+/*   Updated: 2019/06/18 17:48:36 by becaraya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,10 @@
 
 # define HITBOX_RADIUS 0.25
 # define WALK_SPEED 3.5
-//		set that to 1.8 or something
 # define LOOK_SENS 2.5
-//		set that to 1.5
+# define MOUSE_SENS_X 0.008
+# define MOUSE_SENS_Y 10
+
 # define M_2PI 6.283185307179586476925286766559005768394338798750211641949
 
 typedef struct		s_bren
@@ -103,6 +104,17 @@ typedef struct		s_keys
 	unsigned	space:1;
 }					t_keys;
 
+typedef struct		s_mouse
+{
+	unsigned	left:1;
+	unsigned	righ:1;
+	unsigned	up:1;
+	unsigned	down:1;
+	unsigned	mouve:1;
+	unsigned	click:1;
+}					t_mouse;
+
+
 typedef struct		s_all
 {
 	int				status;
@@ -130,6 +142,8 @@ typedef struct		s_all
 	t_keys			k;
 	SDL_Event		ev;
 
+	t_mouse			m;
+
 	t_player		play;
 	char			fps;
 	long			last_time;
@@ -138,15 +152,12 @@ typedef struct		s_all
 	int				dtime;
 
 	char			v0id[32];
-	int				look_u_d;
 	
 	SDL_Surface		*pct_menu;
 }					t_all;
 
 int					yeet(t_all *al);
 void				main_loop(t_all *al);
-void				game(t_all *al);
-void				render(t_all *al);
 void				column(t_all *al, int x, double dist);
 void				draw_line(t_all *al);
 void				minimap(t_all *al);
@@ -168,6 +179,9 @@ void				free_tab_int(int **tab, int y);
 void				free_tab_str(char **str);
 int					read_n_pars(t_all *al, char *argv);
 int					verif_n_free(t_all *al);
+
+void				game(t_all *al);
+void				render(t_all *al);
 void				menu(t_all *al);
 
 #endif

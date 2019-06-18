@@ -6,7 +6,7 @@
 /*   By: becaraya <becaraya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/03 17:44:06 by pitriche          #+#    #+#             */
-/*   Updated: 2019/06/14 15:27:45 by becaraya         ###   ########.fr       */
+/*   Updated: 2019/06/18 17:48:46 by becaraya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,22 +33,21 @@ void	key_func(t_all *al)
 	kev = al->ev.key;
 	if (al->ev.type == SDL_KEYDOWN)
 	{
-		kev.keysym.sym == SDLK_ESCAPE ? yeet(al) : 0;
-		// kev.keysym.sym == SDLK_ESCAPE ? al->status = ST_PAUSE : 0;
-		if (al->status == ST_GAME)
-		{
-			kev.keysym.sym == SDLK_w ? al->k.w = 1 : 0;
-			kev.keysym.sym == SDLK_a ? al->k.a = 1 : 0;
-			kev.keysym.sym == SDLK_s ? al->k.s = 1 : 0;
-			kev.keysym.sym == SDLK_d ? al->k.d = 1 : 0;
-			kev.keysym.sym == SDLK_LEFT ? al->k.left = 1 : 0;
-			kev.keysym.sym == SDLK_RIGHT ? al->k.righ = 1 : 0;
-			kev.keysym.sym == SDLK_UP ? al->k.up = 1 : 0;
-			kev.keysym.sym == SDLK_DOWN ? al->k.down = 1 : 0;
-			kev.keysym.sym == SDLK_LSHIFT ? al->k.lshift = 1 : 0;
-			kev.keysym.sym == SDLK_SPACE ? al->k.space = 1 : 0;
+	// kev.keysym.sym == SDLK_ESCAPE ? yeet(al) : 0;
+	if (kev.keysym.sym == SDLK_ESCAPE)
+		al->status = (al->status == ST_GAME) ? ST_PAUSE : ST_GAME;
+	// kev.keysym.sym == SDLK_ESCAPE ? al->status = ST_PAUSE : 0;
+		kev.keysym.sym == SDLK_w ? al->k.w = 1 : 0;
+		kev.keysym.sym == SDLK_a ? al->k.a = 1 : 0;
+		kev.keysym.sym == SDLK_s ? al->k.s = 1 : 0;
+		kev.keysym.sym == SDLK_d ? al->k.d = 1 : 0;
+		kev.keysym.sym == SDLK_LEFT ? al->k.left = 1 : 0;
+		kev.keysym.sym == SDLK_RIGHT ? al->k.righ = 1 : 0;
+		kev.keysym.sym == SDLK_UP ? al->k.up = 1 : 0;
+		kev.keysym.sym == SDLK_DOWN ? al->k.down = 1 : 0;
+		kev.keysym.sym == SDLK_LSHIFT ? al->k.lshift = 1 : 0;
+		kev.keysym.sym == SDLK_SPACE ? al->k.space = 1 : 0;
 
-		}
 	}
 	else
 		keyup_func(al, kev);
@@ -56,5 +55,18 @@ void	key_func(t_all *al)
 
 void	mouse_func(t_all *al)
 {
+	SDL_MouseMotionEvent mev;
+
+	mev = al->ev.motion;
+	if (mev.type == SDL_MOUSEMOTION)
+	{
+		printf("mev.xrel===========%d\n", mev.xrel);
+		al->play.dir += MOUSE_SENS_X * -mev.xrel;
+		// mev.xrel < 0 ? al->play.dir += MOUSE_SENS * mev.xrel : 0;
+		al->play.look_up += MOUSE_SENS_Y * -mev.yrel;
+		// mev.yrel < 0 ? al->play.look_up += MOUSE_SENS * mev.yrel : 0;
+	}
+	// SDL_SetCursor(SDL_CreateSystemCursor(SDL_SYSTEM_CURSOR_CROSSHAIR));
+	// SDL_SetCursor(init_system_cursor(arrow)); //il faut free le cursor
 	printf("moootiooon  x>%u y>%u\n", al->ev.motion.x, al->ev.motion.y);
 }
