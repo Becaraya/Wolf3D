@@ -6,7 +6,7 @@
 /*   By: becaraya <becaraya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/03 17:38:54 by pitriche          #+#    #+#             */
-/*   Updated: 2019/06/19 12:59:16 by becaraya         ###   ########.fr       */
+/*   Updated: 2019/06/19 20:05:38 by becaraya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static void	wall_hor(t_all *al, double ang)
 	}
 }
 
-void			cast_ray(t_all *al, int x)
+void		cast_ray(t_all *al, int x)
 {
 	double	ang;
 
@@ -84,7 +84,7 @@ void			cast_ray(t_all *al, int x)
 
 void		render(t_all *al)
 {
-	int x;
+	int		x;
 
 	x = 0;
 	while (x < WIN_SIZEX)

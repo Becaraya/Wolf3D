@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pitriche <pitriche@student.42.fr>          +#+  +:+       +#+        */
+/*   By: becaraya <becaraya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 17:37:30 by pitriche          #+#    #+#             */
-/*   Updated: 2019/06/13 14:18:14 by pitriche         ###   ########.fr       */
+/*   Updated: 2019/06/19 20:04:00 by becaraya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,10 @@ void	minimap(t_all *al)
 		}
 		y++;
 	}
-	for (int x = 0; x < WIN_SIZEX; x++)
+	x = 0;
+	while (x < WIN_SIZEX)
 	{
-		cast_ray(al, x);
+		cast_ray(al, x++);
 		draw_line(al);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: becaraya <becaraya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/03 11:47:13 by pitriche          #+#    #+#             */
-/*   Updated: 2019/06/19 16:24:49 by becaraya         ###   ########.fr       */
+/*   Updated: 2019/06/19 20:01:58 by becaraya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ void		main_loop(t_all *al)
 {
 	while (1)
 	{
-		// printf("keys> %d%d%d%d\n", al->k.w, al->k.a, al->k.s, al->k.d);
 		while (SDL_PollEvent(&al->ev) != 0)
 		{
 			al->ev.type == SDL_QUIT ? yeet(al) : 0;
@@ -52,7 +51,7 @@ void		main_loop(t_all *al)
 		}
 		if (al->status == ST_PAUSE)
 		{
-			SDL_ShowCursor(1);
+			SDL_ShowCursor(1);// a mettre dans une fct pause
 			render(al);
 		}
 		if (al->status == ST_MENU)
