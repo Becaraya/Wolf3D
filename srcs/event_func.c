@@ -6,7 +6,7 @@
 /*   By: becaraya <becaraya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/03 17:44:06 by pitriche          #+#    #+#             */
-/*   Updated: 2019/06/18 17:48:46 by becaraya         ###   ########.fr       */
+/*   Updated: 2019/06/19 14:16:44 by becaraya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,13 +60,17 @@ void	mouse_func(t_all *al)
 	mev = al->ev.motion;
 	if (mev.type == SDL_MOUSEMOTION)
 	{
-		printf("mev.xrel===========%d\n", mev.xrel);
-		al->play.dir += MOUSE_SENS_X * -mev.xrel;
-		// mev.xrel < 0 ? al->play.dir += MOUSE_SENS * mev.xrel : 0;
-		al->play.look_up += MOUSE_SENS_Y * -mev.yrel;
-		// mev.yrel < 0 ? al->play.look_up += MOUSE_SENS * mev.yrel : 0;
+		if (al->status == ST_GAME)
+		{
+			if ((mev.xrel < 0 && mev.x < WIN_SIZEX/2) || (mev.xrel > 0 && mev.x > WIN_SIZEX/2)) 
+				al->play.dir += MOUSE_SENS_X * -mev.xrel;
+			if (mev.yrel < 0 && mev.y < WIN_SIZEY/2)
+				al->play.look_up -= MOUSE_SENS_Y * mev.yrel;
+			if (mev.yrel > 0 && mev.y > WIN_SIZEY/2)
+				al->play.look_up -= MOUSE_SENS_Y * mev.yrel;
+		}
 	}
 	// SDL_SetCursor(SDL_CreateSystemCursor(SDL_SYSTEM_CURSOR_CROSSHAIR));
 	// SDL_SetCursor(init_system_cursor(arrow)); //il faut free le cursor
-	printf("moootiooon  x>%u y>%u\n", al->ev.motion.x, al->ev.motion.y);
+	// printf("moootiooon  x>%u y>%u\n", al->ev.motion.x, al->ev.motion.y);
 }

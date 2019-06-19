@@ -6,7 +6,7 @@
 /*   By: becaraya <becaraya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/22 15:59:05 by becaraya          #+#    #+#             */
-/*   Updated: 2019/06/18 17:35:30 by becaraya         ###   ########.fr       */
+/*   Updated: 2019/06/19 11:59:26 by becaraya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 static int	load_image(t_all *al)
 {
 	al->pct_menu = SDL_LoadBMP("../ressource/menu.bmp");
+	return (0);
 }
 
 static void	init_player(t_all *al)

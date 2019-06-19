@@ -6,7 +6,7 @@
 /*   By: becaraya <becaraya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/22 15:59:52 by becaraya          #+#    #+#             */
-/*   Updated: 2019/06/18 17:48:36 by becaraya         ###   ########.fr       */
+/*   Updated: 2019/06/19 14:17:53 by becaraya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 # define WIN_SIZEX 1280
 # define WIN_SIZEY 720
 # define WIN_POSX 100
-# define WIN_POSY 100
+# define WIN_POSY 10
 
 # define ST_MENU 0
 # define ST_GAME 1
@@ -43,8 +43,8 @@
 # define HITBOX_RADIUS 0.25
 # define WALK_SPEED 3.5
 # define LOOK_SENS 2.5
-# define MOUSE_SENS_X 0.008
-# define MOUSE_SENS_Y 10
+# define MOUSE_SENS_X 0.007
+# define MOUSE_SENS_Y 2
 
 # define M_2PI 6.283185307179586476925286766559005768394338798750211641949
 
