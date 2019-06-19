@@ -6,7 +6,7 @@
 /*   By: becaraya <becaraya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/03 17:39:58 by pitriche          #+#    #+#             */
-/*   Updated: 2019/06/19 13:39:43 by becaraya         ###   ########.fr       */
+/*   Updated: 2019/06/19 16:28:29 by becaraya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,9 @@ static void	move(t_all *al)
 		al->play.look_up += 10;
 	if (al->k.down)
 		al->play.look_up -= 10;
-	// printf("================%f\n", al->play.look_up);
+	al->play.look_up = (al->play.look_up > -1040) ? al->play.look_up : -1040; 
+	al->play.look_up = (al->play.look_up < 1000) ? al->play.look_up : 1000;
+	printf("================%f\n", al->play.look_up);
 	// al->k.w || al->k.a || al->k.s || al->k.d ?
 	// printf("x%.1f y%.1f, dtime:%d\n", al->play.posx, al->play.posy, al->dtime) : 0;
 }
