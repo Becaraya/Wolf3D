@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_loop.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: becaraya <becaraya@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pitriche <pitriche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/03 11:47:13 by pitriche          #+#    #+#             */
-/*   Updated: 2019/06/19 20:01:58 by becaraya         ###   ########.fr       */
+/*   Updated: 2019/06/27 12:55:36 by pitriche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ static void	dtime(t_all *al)
 	al->dtime > 1000000 ? al->dtime = 1000000 : 0;
 	al->last_time = al->curr_time;
 	al->tgt_time = al->last_time + 1000000 / al->fps;
-	//printf("%d fps\n", 1000000 / al->dtime);
 }
 
 void		main_loop(t_all *al)
@@ -51,7 +50,7 @@ void		main_loop(t_all *al)
 		}
 		if (al->status == ST_PAUSE)
 		{
-			SDL_ShowCursor(1);// a mettre dans une fct pause
+			SDL_ShowCursor(1);
 			render(al);
 		}
 		if (al->status == ST_MENU)

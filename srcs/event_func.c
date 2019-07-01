@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   event_func.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: becaraya <becaraya@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pitriche <pitriche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/03 17:44:06 by pitriche          #+#    #+#             */
-/*   Updated: 2019/06/19 20:00:37 by becaraya         ###   ########.fr       */
+/*   Updated: 2019/06/27 12:57:48 by pitriche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,9 @@ void		key_func(t_all *al)
 	kev = al->ev.key;
 	if (al->ev.type == SDL_KEYDOWN)
 	{
-	// kev.keysym.sym == SDLK_ESCAPE ? yeet(al) : 0;
-		if (kev.keysym.sym == SDLK_ESCAPE)
+		kev.keysym.sym == SDLK_ESCAPE ? yeet(al) : 0;
+		if (kev.keysym.sym == SDLK_F1)
 			al->status = (al->status == ST_GAME) ? ST_PAUSE : ST_GAME;
-	// kev.keysym.sym == SDLK_ESCAPE ? al->status = ST_PAUSE : 0;
 		kev.keysym.sym == SDLK_w ? al->k.w = 1 : 0;
 		kev.keysym.sym == SDLK_a ? al->k.a = 1 : 0;
 		kev.keysym.sym == SDLK_s ? al->k.s = 1 : 0;
@@ -70,7 +69,4 @@ void		mouse_func(t_all *al)
 		? al->play.look_up : -1040;
 		al->play.look_up = (al->play.look_up < 1000) ? al->play.look_up : 1000;
 	}
-	// SDL_SetCursor(SDL_CreateSystemCursor(SDL_SYSTEM_CURSOR_CROSSHAIR));
-	// SDL_SetCursor(init_system_cursor(arrow)); //il faut free le cursor
-	// printf("moootiooon  x>%u y>%u\n", al->ev.motion.x, al->ev.motion.y);
 }

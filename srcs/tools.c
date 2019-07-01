@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tools.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: becaraya <becaraya@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pitriche <pitriche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/27 09:51:41 by becaraya          #+#    #+#             */
-/*   Updated: 2019/06/17 14:03:44 by becaraya         ###   ########.fr       */
+/*   Updated: 2019/07/01 07:54:41 by pitriche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int			ft_is_valid_str(char *str)
 	return (1);
 }
 
-int		verif_n_free(t_all *al)
+int			verif_n_free(t_all *al)
 {
 	int i;
 
@@ -70,27 +70,4 @@ int		verif_n_free(t_all *al)
 	}
 	free_coo(al->coo);
 	return (EXIT_SUCCESS);
-}
-
-void		print_map(t_all *al) // a suppr
-{
-	int		i;
-	int		j;
-	t_coo	*coo_h;
-
-	i = 0;
-	j = 0;
-	coo_h = al->coo;
-	while (i < al->y_mx_map)
-	{
-		while (j < al->x_mx_map)
-		{
-			ft_putnbr(al->map[i][j]);
-			ft_putchar(' ');
-			j++;
-		}
-		putchar('\n');
-		j = 0;
-		i++;
-	}
 }

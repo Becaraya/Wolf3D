@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: becaraya <becaraya@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pitriche <pitriche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/03 17:38:54 by pitriche          #+#    #+#             */
-/*   Updated: 2019/06/19 20:05:38 by becaraya         ###   ########.fr       */
+/*   Updated: 2019/07/01 07:48:45 by pitriche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,11 @@ static void	wall_ver(t_all *al, double ang)
 	fck = ang < M_PI ? 0 : 1;
 	while (fck ? (x >= 0) : (++x < al->x_mx_map))
 	{
+		al->hit_nesw = fck ? 1 : 3;
 		al->hitx = x;
 		al->hity = al->play.posy + (x - al->play.posx) * tmp;
+		al->hperc = fck ? 1 + (int)al->hity - al->hity :
+		al->hity - (int)al->hity;
 		al->hitdst = ((x - al->play.posx) / sin(ang)) * cos(ang -
 			al->play.dir);
 		al->hity > 0 && al->hity <= al->y_mx_map ? al->hit =
@@ -46,8 +49,11 @@ static void	wall_hor(t_all *al, double ang)
 	fck = ang < M_PI / 2 || ang > 3 * M_PI / 2 ? 0 : 1;
 	while (fck ? (y >= 0) : (++y < al->y_mx_map))
 	{
+		al->hhit_ns = fck ? 2 : 0;
 		al->hhity = y;
 		al->hhitx = al->play.posx + (y - al->play.posy) * tmp;
+		al->hhperc = !fck ? 1 + (int)al->hhitx - al->hhitx :
+		al->hhitx - (int)al->hhitx;
 		al->hhitdst = ((y - al->play.posy) / cos(ang)) * cos(ang -
 			al->play.dir);
 		al->hhitx > 0 && al->hhitx <= al->x_mx_map ? al->hhit =
@@ -76,6 +82,8 @@ void		cast_ray(t_all *al, int x)
 	if (!al->hit || al->hitdst > al->hhitdst)
 	{
 		al->hit = al->hhit;
+		al->hit_nesw = al->hhit_ns;
+		al->hperc = al->hhperc;
 		al->hitx = al->hhitx;
 		al->hity = al->hhity;
 		al->hitdst = al->hhitdst;
@@ -94,7 +102,6 @@ void		render(t_all *al)
 		x++;
 	}
 	minimap(al);
-	// printf("fps: %d\n", 1000000 / al->dtime);
 	SDL_UpdateTexture(al->tex, 0, al->pix, WIN_SIZEX * sizeof(int));
 	SDL_RenderCopy(al->ren, al->tex, 0, 0);
 	SDL_RenderPresent(al->ren);

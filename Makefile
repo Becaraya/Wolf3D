@@ -40,7 +40,8 @@ SRC_LIST = free.c \
 		read.c \
 		tools.c \
 		yeet.c \
-		menu.c
+		menu.c \
+		parse_tex.c
 
 SRC_DIR = ./srcs/
 SRC = $(addprefix $(SRC_DIR), $(SRC_LIST))

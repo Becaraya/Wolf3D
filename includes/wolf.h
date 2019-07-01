@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wolf.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: becaraya <becaraya@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pitriche <pitriche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/22 15:59:52 by becaraya          #+#    #+#             */
-/*   Updated: 2019/06/19 14:17:53 by becaraya         ###   ########.fr       */
+/*   Updated: 2019/07/01 08:28:53 by pitriche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@
 # define WIN_POSX 100
 # define WIN_POSY 10
 
+# define TEXT_SIZE 512
+
 # define ST_MENU 0
 # define ST_GAME 1
 # define ST_PAUSE 2
@@ -46,6 +48,9 @@
 # define MOUSE_SENS_X 0.007
 # define MOUSE_SENS_Y 2
 
+/*
+** yep, this IS flex
+*/
 # define M_2PI 6.283185307179586476925286766559005768394338798750211641949
 
 typedef struct		s_bren
@@ -60,11 +65,11 @@ typedef struct		s_bren
 	int color;
 }					t_bren;
 
-typedef struct			s_dot
+typedef struct		s_dot
 {
 	int x;
 	int	y;
-}						t_dot;
+}					t_dot;
 
 /*
 ** The structs above are for bresenham
@@ -114,29 +119,41 @@ typedef struct		s_mouse
 	unsigned	click:1;
 }					t_mouse;
 
-
 typedef struct		s_all
 {
 	int				status;
 
 	int				x_mx_map;
 	int				y_mx_map;
-	int				**map; // ça merderas pas tkt <3 // Que Du Love
+	int				**map;
 	t_coo			*coo;
 
 	SDL_Window		*win;
 	SDL_Texture		*tex;
 	SDL_Renderer	*ren;
-	unsigned int	*pix; // tableau de pixel a editer pour afficher, ARGB
+	unsigned int	*pix;
+
+	unsigned int	*text1;
+	unsigned int	*text2;
+	unsigned int	*text30;
+	unsigned int	*text31;
+	unsigned int	*text32;
+
+	unsigned int	*text4[10];
 
 	int				hhit;
+	int				hhit_ns;
+	double			hhperc;
 	double			hhitx;
 	double			hhity;
 	double			hhitdst;
 	int				hit;
+	int				hit_nesw;
+	double			hperc;
 	double			hitx;
 	double			hity;
 	double			hitdst;
+
 	int				mnmp_sc;
 
 	t_keys			k;
@@ -151,13 +168,14 @@ typedef struct		s_all
 	long			tgt_time;
 	int				dtime;
 
-	char			v0id[32];
-	
 	SDL_Surface		*pct_menu;
+	char			v0id[32];
 }					t_all;
 
 int					yeet(t_all *al);
 void				main_loop(t_all *al);
+
+unsigned int		*parse_tex(t_all *al, char *name);
 void				column(t_all *al, int x, double dist);
 void				draw_line(t_all *al);
 void				minimap(t_all *al);

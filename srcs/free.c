@@ -6,7 +6,7 @@
 /*   By: becaraya <becaraya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/31 15:51:13 by becaraya          #+#    #+#             */
-/*   Updated: 2019/06/06 12:38:23 by becaraya         ###   ########.fr       */
+/*   Updated: 2019/06/24 15:08:25 by pitriche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ void		free_tab_str(char **str)
 		i++;
 	}
 	free(*str);
-	// str = NULL;
 	free(str);
 }
 

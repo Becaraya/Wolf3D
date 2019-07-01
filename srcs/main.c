@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: becaraya <becaraya@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pitriche <pitriche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/22 15:59:05 by becaraya          #+#    #+#             */
-/*   Updated: 2019/06/19 11:59:26 by becaraya         ###   ########.fr       */
+/*   Updated: 2019/07/01 08:29:24 by pitriche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf.h"
-
-// __attribute__((destructor)) void the_end(void);
 
 static int	load_image(t_all *al)
 {
@@ -45,10 +43,28 @@ static void	init_player(t_all *al)
 	yeet(al);
 }
 
+static void	init_tex(t_all *al)
+{
+	al->text1 = parse_tex(al, "ressource/text1.bmp");
+	al->text2 = parse_tex(al, "ressource/text2.bmp");
+	al->text30 = parse_tex(al, "ressource/text30.bmp");
+	al->text31 = parse_tex(al, "ressource/text31.bmp");
+	al->text32 = parse_tex(al, "ressource/text32.bmp");
+	al->text4[0] = parse_tex(al, "ressource/text40.bmp");
+	al->text4[1] = parse_tex(al, "ressource/text41.bmp");
+	al->text4[2] = parse_tex(al, "ressource/text42.bmp");
+	al->text4[3] = parse_tex(al, "ressource/text43.bmp");
+	al->text4[4] = parse_tex(al, "ressource/text44.bmp");
+	al->text4[5] = parse_tex(al, "ressource/text45.bmp");
+	al->text4[6] = parse_tex(al, "ressource/text46.bmp");
+	al->text4[7] = parse_tex(al, "ressource/text47.bmp");
+	al->text4[8] = parse_tex(al, "ressource/text48.bmp");
+	al->text4[9] = parse_tex(al, "ressource/text49.bmp");
+}
+
 static void	init(t_all *al)
 {
 	al->play.look_up = 0;
-
 	al->status = ST_GAME;
 	al->fps = 60;
 	al->mnmp_sc = MINIMAP_SC / (al->x_mx_map > al->y_mx_map ? al->x_mx_map :
@@ -66,6 +82,7 @@ static void	init(t_all *al)
 		yeet(al);
 	if ((al->pix = ft_memalloc(WIN_SIZEX * WIN_SIZEY * sizeof(int))) == NULL)
 		yeet(al);
+	init_tex(al);
 	load_image(al);
 	init_player(al);
 }
@@ -79,15 +96,9 @@ int			main(int argc, char **argv)
 	{
 		if (read_n_pars(&al, argv[1]) == EXIT_FAILURE)
 			return (0);
-		print_map(&al);
 		init(&al);
 		main_loop(&al);
 		yeet(&al);
 	}
 	return (0);
 }
-
-// void    the_end(void)
-// {
-// 	while(420);
-// }
