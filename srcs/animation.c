@@ -6,7 +6,7 @@
 /*   By: becaraya <becaraya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/28 18:23:15 by becaraya          #+#    #+#             */
-/*   Updated: 2019/07/28 18:56:06 by becaraya         ###   ########.fr       */
+/*   Updated: 2019/07/28 19:39:24 by becaraya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,18 +25,47 @@ void			crouch(t_all *al)
 		set_crouch(al, 1, WALK_SPEED_SLOW);
 	else if (al->k.ctrl == 0 && al->play.a.sneak.stats == 1)
 		set_crouch(al, 0, WALK_SPEED);
-	else if (al->play.a.sneak.ti_ani + 10000 < al->curr_time)
+	else if (al->play.a.sneak.ti_ani + SNEAK_FRAME_COOLDOWN < al->curr_time)
 	{
 		al->play.a.sneak.ti_ani = al->curr_time;
-		if (al->k.ctrl == 1 && al->play.a.sneak.st_ani < 3)
+		if (al->k.ctrl == 1 && al->play.a.sneak.st_ani < SNEAK_TOTAL_FRAME)
 		{
 			al->play.a.sneak.st_ani++;
-			al->play.look_up -= 50;
+			al->play.look_up -= SNEAK_HEIGT_PER_FRAME;
 		}
 		if (al->k.ctrl == 0 && al->play.a.sneak.st_ani > 0)
 		{
 			al->play.a.sneak.st_ani--;
-			al->play.look_up += 50;
+			al->play.look_up += SNEAK_HEIGT_PER_FRAME;
+		}
+	}
+}
+
+void			jump(t_all *al)
+{
+	if (al->k.space == 1 && al->play.a.jump.stats == 0)
+	{
+		al->play.a.jump.ti_ani = al->curr_time;
+		al->play.a.jump.stats = 1;
+	}
+	if (al->play.a.jump.stats == 1
+		&& al->play.a.jump.ti_ani + JUMP_FRAME_COOLDOWN < al->curr_time)
+	{
+		al->play.a.jump.ti_ani = al->curr_time;
+		if (al->play.a.jump.st_ani < JUMP_FRAME_UP)
+		{
+			al->play.a.jump.st_ani++;
+			al->play.look_up += JUMP_HEIGT_PER_FRAME;
+		}
+		else if (al->play.a.jump.st_ani < JUMP_FRAME_DOWN)
+		{
+			al->play.a.jump.st_ani++;
+			al->play.look_up -= JUMP_HEIGT_PER_FRAME;
+		}
+		else
+		{
+			al->play.a.jump.st_ani = 0;
+			al->play.a.jump.stats = 0;
 		}
 	}
 }

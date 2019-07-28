@@ -6,7 +6,7 @@
 /*   By: becaraya <becaraya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/03 17:39:58 by pitriche          #+#    #+#             */
-/*   Updated: 2019/07/28 18:23:50 by becaraya         ###   ########.fr       */
+/*   Updated: 2019/07/28 19:09:10 by becaraya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ static void	move(t_all *al)
 	if (al->k.down)
 		al->play.look_up -= 10;
 	crouch(al);
+	jump(al);
 	al->play.look_up = (al->play.look_up > -1040) ? al->play.look_up : -1040;
 	al->play.look_up = (al->play.look_up < 1000) ? al->play.look_up : 1000;
 }

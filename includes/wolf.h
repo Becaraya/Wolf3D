@@ -6,7 +6,7 @@
 /*   By: becaraya <becaraya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/22 15:59:52 by becaraya          #+#    #+#             */
-/*   Updated: 2019/07/28 18:29:08 by becaraya         ###   ########.fr       */
+/*   Updated: 2019/07/28 19:38:28 by becaraya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,15 @@
 # define MOUSE_SENS_X 0.007
 # define MOUSE_SENS_Y 2
 
+# define SNEAK_HEIGT_PER_FRAME 50 
+# define SNEAK_FRAME_COOLDOWN 10000
+# define SNEAK_TOTAL_FRAME 3
+# define JUMP_HEIGT_PER_FRAME 50
+# define JUMP_FRAME_COOLDOWN 10000
+# define JUMP_FRAME_UP 3
+# define JUMP_FRAME_DOWN 6
+
+
 /*
 ** yep, this IS flex
 */
@@ -79,9 +88,18 @@ typedef struct		s_crounch
 	double	ti_ani;
 }					t_crounch;
 
+typedef struct		s_jump
+{
+	int		stats;
+	int		st_ani;
+	double	ti_ani;
+
+}					t_jump;
+
 typedef struct 		s_animation
 {
 	t_crounch		sneak;
+	t_jump			jump;
 }					t_animation;
 
 /*
@@ -199,6 +217,7 @@ void				minimap(t_all *al);
 void				cast_ray(t_all *al, int x);
 
 void				crouch(t_all *al);
+void				jump(t_all *al);
 
 void				key_func(t_all *al);
 void				mouse_func(t_all *al);

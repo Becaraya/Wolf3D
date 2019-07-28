@@ -6,7 +6,7 @@
 /*   By: becaraya <becaraya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/22 15:59:05 by becaraya          #+#    #+#             */
-/*   Updated: 2019/07/28 18:29:08 by becaraya         ###   ########.fr       */
+/*   Updated: 2019/07/28 19:13:29 by becaraya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ static void	init_player(t_all *al)
 	al->play.fov = 1;
 	al->play.a.sneak.st_ani = 0;
 	al->play.a.sneak.stats = 0;
+	al->play.a.jump.stats = 0;
+	al->play.a.jump.st_ani = 0;
 	j = -1;
 	while (++j < al->y_mx_map)
 	{
