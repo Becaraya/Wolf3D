@@ -28,7 +28,8 @@ HEADERS_LIST = wolf.h
 HEADERS_DIR = ./includes/
 HEADERS = $(addprefix $(HEADERS_DIR), $(HEADERS_LIST))
 
-SRC_LIST = free.c \
+SRC_LIST = animation.c \
+		free.c \
 		main.c \
 		render.c \
 		column.c \

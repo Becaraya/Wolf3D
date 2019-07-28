@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   event_func.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pitriche <pitriche@student.42.fr>          +#+  +:+       +#+        */
+/*   By: becaraya <becaraya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/03 17:44:06 by pitriche          #+#    #+#             */
-/*   Updated: 2019/06/27 12:57:48 by pitriche         ###   ########.fr       */
+/*   Updated: 2019/07/28 17:28:01 by becaraya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ static void	keyup_func(t_all *al, SDL_KeyboardEvent kev)
 	kev.keysym.sym == SDLK_SPACE ? al->k.space = 0 : 0;
 	kev.keysym.sym == SDLK_UP ? al->k.up = 0 : 0;
 	kev.keysym.sym == SDLK_DOWN ? al->k.down = 0 : 0;
+	kev.keysym.sym == SDLK_LCTRL ? al->k.ctrl = 0 : 0;
 }
 
 void		key_func(t_all *al)
@@ -46,6 +47,7 @@ void		key_func(t_all *al)
 		kev.keysym.sym == SDLK_DOWN ? al->k.down = 1 : 0;
 		kev.keysym.sym == SDLK_LSHIFT ? al->k.lshift = 1 : 0;
 		kev.keysym.sym == SDLK_SPACE ? al->k.space = 1 : 0;
+		kev.keysym.sym == SDLK_LCTRL ? al->k.ctrl = 1 : 0;
 	}
 	else
 		keyup_func(al, kev);

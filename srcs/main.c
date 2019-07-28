@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pitriche <pitriche@student.42.fr>          +#+  +:+       +#+        */
+/*   By: becaraya <becaraya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/22 15:59:05 by becaraya          #+#    #+#             */
-/*   Updated: 2019/07/01 08:29:24 by pitriche         ###   ########.fr       */
+/*   Updated: 2019/07/28 18:29:08 by becaraya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,12 @@ static void	init_player(t_all *al)
 	int i;
 	int j;
 
-	al->play.brightness = 3;
+	al->play.brightness = 2;
 	al->play.speed = WALK_SPEED;
 	al->play.look_up = 0;
 	al->play.fov = 1;
+	al->play.a.sneak.st_ani = 0;
+	al->play.a.sneak.stats = 0;
 	j = -1;
 	while (++j < al->y_mx_map)
 	{

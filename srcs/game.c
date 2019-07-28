@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pitriche <pitriche@student.42.fr>          +#+  +:+       +#+        */
+/*   By: becaraya <becaraya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/03 17:39:58 by pitriche          #+#    #+#             */
-/*   Updated: 2019/06/27 12:54:00 by pitriche         ###   ########.fr       */
+/*   Updated: 2019/07/28 18:23:50 by becaraya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ static void	move(t_all *al)
 		al->play.look_up += 10;
 	if (al->k.down)
 		al->play.look_up -= 10;
+	crouch(al);
 	al->play.look_up = (al->play.look_up > -1040) ? al->play.look_up : -1040;
 	al->play.look_up = (al->play.look_up < 1000) ? al->play.look_up : 1000;
 }

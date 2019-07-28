@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wolf.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pitriche <pitriche@student.42.fr>          +#+  +:+       +#+        */
+/*   By: becaraya <becaraya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/22 15:59:52 by becaraya          #+#    #+#             */
-/*   Updated: 2019/07/01 08:28:53 by pitriche         ###   ########.fr       */
+/*   Updated: 2019/07/28 18:29:08 by becaraya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@
 
 # define HITBOX_RADIUS 0.25
 # define WALK_SPEED 3.5
+# define WALK_SPEED_SLOW 1.25
 # define LOOK_SENS 2.5
 # define MOUSE_SENS_X 0.007
 # define MOUSE_SENS_Y 2
@@ -71,21 +72,36 @@ typedef struct		s_dot
 	int	y;
 }					t_dot;
 
+typedef struct		s_crounch
+{
+	int		stats;
+	int		st_ani;
+	double	ti_ani;
+}					t_crounch;
+
+typedef struct 		s_animation
+{
+	t_crounch		sneak;
+}					t_animation;
+
 /*
 ** The structs above are for bresenham
 */
 
 typedef struct		s_player
 {
-	double	posx;
-	double	posy;
-	double	dir;
-	double	fov;
-	double	speed;
-	double	look_up;
-	double	sprint;
-	double	brightness;
+	double			posx;
+	double			posy;
+	double			dir;
+	double			fov;
+	double			speed;
+	double			look_up;
+	double			sprint;
+	double			brightness;
+	t_animation		a;
+	
 }					t_player;
+
 
 typedef struct		s_coo
 {
@@ -107,6 +123,7 @@ typedef struct		s_keys
 	unsigned	down:1;
 	unsigned	lshift:1;
 	unsigned	space:1;
+	unsigned	ctrl:1;
 }					t_keys;
 
 typedef struct		s_mouse
@@ -180,6 +197,8 @@ void				column(t_all *al, int x, double dist);
 void				draw_line(t_all *al);
 void				minimap(t_all *al);
 void				cast_ray(t_all *al, int x);
+
+void				crouch(t_all *al);
 
 void				key_func(t_all *al);
 void				mouse_func(t_all *al);
