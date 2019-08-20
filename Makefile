@@ -42,6 +42,7 @@ SRC_LIST = animation.c \
 		tools.c \
 		yeet.c \
 		menu.c \
+		pause.c \
 		parse_tex.c
 
 SRC_DIR = ./srcs/

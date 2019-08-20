@@ -6,7 +6,7 @@
 /*   By: becaraya <becaraya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/22 15:59:05 by becaraya          #+#    #+#             */
-/*   Updated: 2019/07/28 19:13:29 by becaraya         ###   ########.fr       */
+/*   Updated: 2019/08/20 17:46:26 by becaraya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 
 static int	load_image(t_all *al)
 {
-	al->pct_menu = SDL_LoadBMP("../ressource/menu.bmp");
+	al->b_resume = parse_tex(al, "ressource/resume.bmp");
+	al->b_quit = parse_tex(al, "ressource/quit.bmp");
+	al->b_setting = parse_tex(al, "ressource/option.bmp");
 	return (0);
 }
 

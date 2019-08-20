@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pitriche <pitriche@student.42.fr>          +#+  +:+       +#+        */
+/*   By: becaraya <becaraya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/03 17:38:54 by pitriche          #+#    #+#             */
-/*   Updated: 2019/07/01 07:48:45 by pitriche         ###   ########.fr       */
+/*   Updated: 2019/08/20 15:23:55 by becaraya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,10 @@ void		render(t_all *al)
 		x++;
 	}
 	minimap(al);
-	SDL_UpdateTexture(al->tex, 0, al->pix, WIN_SIZEX * sizeof(int));
-	SDL_RenderCopy(al->ren, al->tex, 0, 0);
-	SDL_RenderPresent(al->ren);
+	if (al->status == ST_GAME)
+	{
+		SDL_UpdateTexture(al->tex, 0, al->pix, WIN_SIZEX * sizeof(int));
+		SDL_RenderCopy(al->ren, al->tex, 0, 0);
+		SDL_RenderPresent(al->ren);
+	}
 }

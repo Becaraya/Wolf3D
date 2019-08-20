@@ -6,7 +6,7 @@
 /*   By: becaraya <becaraya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/03 17:44:06 by pitriche          #+#    #+#             */
-/*   Updated: 2019/07/28 17:28:01 by becaraya         ###   ########.fr       */
+/*   Updated: 2019/08/20 17:40:23 by becaraya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,29 @@ void		key_func(t_all *al)
 		keyup_func(al, kev);
 }
 
+void		mouse_press(t_all *al)
+{
+	SDL_MouseButtonEvent	bev;
+
+	bev = al->ev.button;
+	if (al->status == ST_PAUSE)
+	{
+		if (bev.clicks == 1)
+		{
+			if (bev.button == SDL_BUTTON_LEFT)
+			{
+				if (bev.y > 100 && bev.y < 215 && bev.x > 410 && bev.x < 890)
+					al->status = ST_GAME;
+				if (bev.y > 455 && bev.y < 580 && bev.x > 490 && bev.x < 800)
+					yeet(al);
+			}
+		}
+	}
+}
+
 void		mouse_func(t_all *al)
 {
-	SDL_MouseMotionEvent mev;
+	SDL_MouseMotionEvent	mev;
 
 	mev = al->ev.motion;
 	if (al->status == ST_GAME)

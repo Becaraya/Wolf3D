@@ -6,7 +6,7 @@
 /*   By: becaraya <becaraya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/03 11:47:13 by pitriche          #+#    #+#             */
-/*   Updated: 2019/07/28 18:29:11 by becaraya         ###   ########.fr       */
+/*   Updated: 2019/08/20 17:20:31 by becaraya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,18 +41,14 @@ void		main_loop(t_all *al)
 				key_func(al);
 			if (al->ev.type == SDL_MOUSEMOTION)
 				mouse_func(al);
+			if (al->ev.type == SDL_MOUSEBUTTONDOWN)
+				mouse_press(al);
 		}
 		dtime(al);
 		if (al->status == ST_GAME)
-		{
 			game(al);
-			render(al);
-		}
 		if (al->status == ST_PAUSE)
-		{
-			SDL_ShowCursor(1);
-			render(al);
-		}
+			game_pause(al);
 		if (al->status == ST_MENU)
 			menu(al);
 	}

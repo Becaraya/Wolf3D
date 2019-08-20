@@ -6,7 +6,7 @@
 /*   By: becaraya <becaraya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/22 15:59:52 by becaraya          #+#    #+#             */
-/*   Updated: 2019/07/28 19:38:28 by becaraya         ###   ########.fr       */
+/*   Updated: 2019/08/20 17:50:49 by becaraya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@
 # define WIN_POSY 10
 
 # define TEXT_SIZE 512
+# define MENU_SIZE_W 1280
+# define MENU_SIZE_H 720
 
 # define ST_MENU 0
 # define ST_GAME 1
@@ -49,14 +51,20 @@
 # define MOUSE_SENS_X 0.007
 # define MOUSE_SENS_Y 2
 
-# define SNEAK_HEIGT_PER_FRAME 50 
+/*
+** oui les variables de hauteur dependent des frames
+** ouai c est deguelasse
+** ouai je me suis trompe c est en fonction du temp que je voulais le faire
+** ouai j ai la flemme de le changer
+** ouai tg
+*/
+# define SNEAK_HEIGT_PER_FRAME 50
 # define SNEAK_FRAME_COOLDOWN 10000
 # define SNEAK_TOTAL_FRAME 3
-# define JUMP_HEIGT_PER_FRAME 50
+# define JUMP_HEIGT_PER_FRAME 25
 # define JUMP_FRAME_COOLDOWN 10000
-# define JUMP_FRAME_UP 3
-# define JUMP_FRAME_DOWN 6
-
+# define JUMP_FRAME_UP 5
+# define JUMP_FRAME_DOWN 10
 
 /*
 ** yep, this IS flex
@@ -96,7 +104,7 @@ typedef struct		s_jump
 
 }					t_jump;
 
-typedef struct 		s_animation
+typedef struct		s_animation
 {
 	t_crounch		sneak;
 	t_jump			jump;
@@ -117,9 +125,7 @@ typedef struct		s_player
 	double			sprint;
 	double			brightness;
 	t_animation		a;
-	
 }					t_player;
-
 
 typedef struct		s_coo
 {
@@ -168,6 +174,12 @@ typedef struct		s_all
 	SDL_Renderer	*ren;
 	unsigned int	*pix;
 
+	unsigned int	*menu;
+
+	unsigned int	*b_resume;
+	unsigned int	*b_setting;
+	unsigned int	*b_quit;
+
 	unsigned int	*text1;
 	unsigned int	*text2;
 	unsigned int	*text30;
@@ -203,7 +215,6 @@ typedef struct		s_all
 	long			tgt_time;
 	int				dtime;
 
-	SDL_Surface		*pct_menu;
 	char			v0id[32];
 }					t_all;
 
@@ -221,6 +232,7 @@ void				jump(t_all *al);
 
 void				key_func(t_all *al);
 void				mouse_func(t_all *al);
+void				mouse_press(t_all *al);
 
 int					pars(t_all *al, char *str, int fd);
 int					len_ti(char **tmp);
@@ -239,5 +251,6 @@ int					verif_n_free(t_all *al);
 void				game(t_all *al);
 void				render(t_all *al);
 void				menu(t_all *al);
+void				game_pause(t_all *al);
 
 #endif
