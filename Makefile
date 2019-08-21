@@ -41,7 +41,6 @@ SRC_LIST = animation.c \
 		read.c \
 		tools.c \
 		yeet.c \
-		menu.c \
 		pause.c \
 		parse_tex.c
 

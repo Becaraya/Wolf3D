@@ -6,7 +6,7 @@
 /*   By: becaraya <becaraya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/22 15:59:52 by becaraya          #+#    #+#             */
-/*   Updated: 2019/08/20 17:50:49 by becaraya         ###   ########.fr       */
+/*   Updated: 2019/08/21 12:31:12 by becaraya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,9 @@
 # define WIN_POSY 10
 
 # define TEXT_SIZE 512
-# define MENU_SIZE_W 1280
-# define MENU_SIZE_H 720
 
-# define ST_MENU 0
 # define ST_GAME 1
 # define ST_PAUSE 2
-# define ST_SETTING 3
 # define ST_CAGE 4
 
 # define MINIMAP_SC 300
@@ -51,13 +47,6 @@
 # define MOUSE_SENS_X 0.007
 # define MOUSE_SENS_Y 2
 
-/*
-** oui les variables de hauteur dependent des frames
-** ouai c est deguelasse
-** ouai je me suis trompe c est en fonction du temp que je voulais le faire
-** ouai j ai la flemme de le changer
-** ouai tg
-*/
 # define SNEAK_HEIGT_PER_FRAME 50
 # define SNEAK_FRAME_COOLDOWN 10000
 # define SNEAK_TOTAL_FRAME 3
@@ -250,7 +239,6 @@ int					verif_n_free(t_all *al);
 
 void				game(t_all *al);
 void				render(t_all *al);
-void				menu(t_all *al);
 void				game_pause(t_all *al);
 
 #endif
