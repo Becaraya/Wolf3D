@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   column.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: becaraya <becaraya@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pitriche <pitriche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/04 13:46:26 by pitriche          #+#    #+#             */
-/*   Updated: 2019/08/20 17:46:25 by becaraya         ###   ########.fr       */
+/*   Updated: 2019/08/21 13:40:46 by pitriche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,9 @@ int		texture_color(t_all *al, double vperc)
 		return (al->text32[y * TEXT_SIZE + x]);
 	if (al->hit == 6)
 		return (anim_tex(al, x, y));
-	return (0);
+	if (al->hit == 7)
+		return (al->text5[al->hit_nesw][y * TEXT_SIZE + x]);
+	return (al->text_missing[y * TEXT_SIZE + x]);
 }
 
 void	column(t_all *al, int x, double dist)

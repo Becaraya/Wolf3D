@@ -6,7 +6,9 @@ FLAGS = -Wall -Wextra
 LIBRARIES = -lft -L$(LIBFT_DIR)
 INCLUDES = -I$(HEADERS_DIR) -I$(LIBFT_HEAD) $(SDL_HEAD)
 
-SDL_DIR = ./SDL2.framework/lib
+
+PWD = $(bash pwd)
+SDL_DIR = $(PWD)/SDL2.framework/lib
 SDL_HEAD = -I ./frameworks/SDL2.framework/Versions/A/Headers \
 		-I ./frameworks/SDL2_ttf.framework/Versions/A/Headers \
 		-I ./frameworks/SDL2_image.framework/Versions/A/Headers \

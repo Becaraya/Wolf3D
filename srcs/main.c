@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: becaraya <becaraya@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pitriche <pitriche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/22 15:59:05 by becaraya          #+#    #+#             */
-/*   Updated: 2019/08/20 17:46:26 by becaraya         ###   ########.fr       */
+/*   Updated: 2019/08/21 14:53:27 by pitriche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ static int	load_image(t_all *al)
 {
 	al->b_resume = parse_tex(al, "ressource/resume.bmp");
 	al->b_quit = parse_tex(al, "ressource/quit.bmp");
-	al->b_setting = parse_tex(al, "ressource/option.bmp");
 	return (0);
 }
 
@@ -66,6 +65,11 @@ static void	init_tex(t_all *al)
 	al->text4[7] = parse_tex(al, "ressource/text47.bmp");
 	al->text4[8] = parse_tex(al, "ressource/text48.bmp");
 	al->text4[9] = parse_tex(al, "ressource/text49.bmp");
+	al->text5[0] = parse_tex(al, "ressource/north.bmp");
+	al->text5[1] = parse_tex(al, "ressource/east.bmp");
+	al->text5[2] = parse_tex(al, "ressource/south.bmp");
+	al->text5[3] = parse_tex(al, "ressource/west.bmp");
+	al->text_missing = parse_tex(al, "ressource/tex_missing.bmp");
 }
 
 static void	init(t_all *al)
@@ -101,7 +105,10 @@ int			main(int argc, char **argv)
 	if (argc == 2)
 	{
 		if (read_n_pars(&al, argv[1]) == EXIT_FAILURE)
-			return (0);
+		{
+			ft_putstr_fd("Invalid map\n", 2);
+			yeet(&al);
+		}
 		init(&al);
 		main_loop(&al);
 		yeet(&al);

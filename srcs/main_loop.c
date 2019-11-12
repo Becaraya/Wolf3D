@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_loop.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: becaraya <becaraya@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pitriche <pitriche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/03 11:47:13 by pitriche          #+#    #+#             */
-/*   Updated: 2019/08/20 17:20:31 by becaraya         ###   ########.fr       */
+/*   Updated: 2019/08/21 14:53:32 by pitriche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,5 @@ void		main_loop(t_all *al)
 			game(al);
 		if (al->status == ST_PAUSE)
 			game_pause(al);
-		if (al->status == ST_MENU)
-			menu(al);
 	}
 }

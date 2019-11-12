@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wolf.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: becaraya <becaraya@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pitriche <pitriche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/22 15:59:52 by becaraya          #+#    #+#             */
-/*   Updated: 2019/08/21 12:31:12 by becaraya         ###   ########.fr       */
+/*   Updated: 2019/08/21 14:52:48 by pitriche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,10 @@ typedef struct		s_dot
 	int	y;
 }					t_dot;
 
+/*
+** The structs above are for bresenham
+*/
+
 typedef struct		s_crounch
 {
 	int		stats;
@@ -98,10 +102,6 @@ typedef struct		s_animation
 	t_crounch		sneak;
 	t_jump			jump;
 }					t_animation;
-
-/*
-** The structs above are for bresenham
-*/
 
 typedef struct		s_player
 {
@@ -166,7 +166,6 @@ typedef struct		s_all
 	unsigned int	*menu;
 
 	unsigned int	*b_resume;
-	unsigned int	*b_setting;
 	unsigned int	*b_quit;
 
 	unsigned int	*text1;
@@ -176,6 +175,8 @@ typedef struct		s_all
 	unsigned int	*text32;
 
 	unsigned int	*text4[10];
+	unsigned int	*text5[4];
+	unsigned int	*text_missing;
 
 	int				hhit;
 	int				hhit_ns;
